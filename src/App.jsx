@@ -20,6 +20,8 @@ function App() {
           <Route path="/formulir" element={<Formulir />} />
           <Route path="/profil" element={<Tentang />} />
           <Route path="/visi-misi" element={<Tentang />} />
+          <Route path="/tugas-fungsi" element={<Tentang />} />
+          <Route path="/struktur-ppid" element={<Tentang />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

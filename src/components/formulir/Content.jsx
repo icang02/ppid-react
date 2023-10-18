@@ -1,5 +1,6 @@
 import { IoChevronForwardOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import img from "../../assets/img/berita.jpg";
 
 const Content = ({ data }) => {
   return (
@@ -13,15 +14,26 @@ const Content = ({ data }) => {
 
       <hr className="mb-5 mt-1" />
 
-      <h2 className="mb-4 text-2xl font-extrabold leading-7 text-biru-uho">
+      <h2 className="mb-5 text-2xl font-extrabold leading-7 text-biru-uho">
         {data.title}
       </h2>
-      <div
-        className="text-sm text-other"
-        dangerouslySetInnerHTML={{ __html: data.content }}
-      ></div>
 
-      {data.link == "/formulir" && (
+      {data.path == "/struktur-ppid" ? (
+        <div>
+          <div
+            className="isi text-sm text-other"
+            dangerouslySetInnerHTML={{ __html: data.content }}
+          ></div>
+          <img src={img} className="mt-4 w-full" />
+        </div>
+      ) : (
+        <div
+          className="isi text-sm text-other"
+          dangerouslySetInnerHTML={{ __html: data.content }}
+        ></div>
+      )}
+
+      {data.path == "/formulir" && (
         <Link
           href="/formulir"
           className="mt-7 inline-block rounded bg-biru-uho px-4 py-3 text-xs text-white"

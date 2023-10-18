@@ -9,3 +9,52 @@
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
+.isi p:not(:first-child),
+.isi p:not(:last-child) {
+  margin-bottom: 12px;
+}
+.isi p:first-child {
+  margin-bottom: 12px;
+}
+.isi p:last-child {
+  margin-bottom: 0px;
+}
+
+.isi ol {
+  list-style: decimal;
+}
+.isi ul {
+  list-style: disc;
+}
+.isi ol li,
+.isi ul li {
+  margin-left: 22px;
+  padding-left: 3px;
+}
+
+.isi h1,
+.isi h2,
+.isi h3,
+.isi h4,
+.isi h5,
+.isi h6 {
+  font-weight: 700;
+}
+.isi h1:not(:first-child),
+.isi h2:not(:first-child),
+.isi h3:not(:first-child),
+.isi h4:not(:first-child),
+.isi h5:not(:first-child),
+.isi h6:not(:first-child) {
+  margin-top: 12px;
+  margin-bottom: 8px;
+}
+.isi h1:first-child,
+.isi h2:first-child,
+.isi h3:first-child,
+.isi h4:first-child,
+.isi h5:first-child,
+.isi h6:first-child {
+  margin-bottom: 8px;
+}
