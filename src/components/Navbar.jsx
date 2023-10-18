@@ -25,7 +25,7 @@ export const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY >= 130) {
+      if (window.scrollY >= 155) {
         setIsSticky(true);
       } else {
         setIsSticky(false);
@@ -45,12 +45,10 @@ export const Navbar = () => {
       className={`${isSticky ? "fixed" : "absolute"} z-50 w-full bg-primary`}
     >
       <div
-        className={`${
-          isSticky ? "px-3 py-1.5" : "px-3 py-3"
-        } container mx-auto flex items-center justify-between transition-all duration-500`}
+        className={`container mx-auto flex items-center justify-between px-3 py-3 transition-all duration-500`}
       >
         <Link to="/" onClick={handleScrollToTop}>
-          <img src={logo} width={isSticky ? "150" : "170"} />
+          <img src={logo} width={isSticky ? "135" : "170"} />
         </Link>
 
         <ul

@@ -22,7 +22,7 @@ const Formulir = () => {
             <div className="mt-5 flex flex-col gap-1">
               <Link
                 to="/formulir"
-                className="group relative bg-biru-uho px-6 py-4 text-sm text-white"
+                className="group relative bg-biru-uho px-5 py-4 text-sm text-white"
               >
                 <span className="inline-block w-[90%] text-xs opacity-90">
                   Formulir Permohonan Informasi Publik
@@ -34,7 +34,7 @@ const Formulir = () => {
 
               <Link
                 to="/formulir"
-                className="group relative bg-biru-uho px-6 py-4 text-sm text-white"
+                className="group relative bg-biru-uho px-5 py-4 text-sm text-white"
               >
                 <span className="inline-block w-[90%] text-xs opacity-90">
                   Formulir Keberatan Atas Layanan Informasi Publik
@@ -46,7 +46,7 @@ const Formulir = () => {
 
               <Link
                 to="/formulir"
-                className="group relative bg-biru-uho px-6 py-4 text-sm text-white"
+                className="group relative bg-biru-uho px-5 py-4 text-sm text-white"
               >
                 <span className="inline-block w-[90%] text-xs opacity-90">
                   Formulir Penyelesaian Sengketa Informasi
