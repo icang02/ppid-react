@@ -1,0 +1,13 @@
+const Footer2 = () => {
+  return (
+    <footer className="bg-secondary">
+      <div className="container mx-auto py-5">
+        <p className="text-center text-sm font-light text-white opacity-70">
+          Copyright @ 2023. All Right Reserved. Universitas Halu Oleo
+        </p>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer2;
