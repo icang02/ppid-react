@@ -13,10 +13,13 @@ const Content = ({ data }) => {
 
       <hr className="mb-5 mt-1" />
 
-      <h2 className="mb-4 text-2xl font-bold text-biru-uho">{data.title}</h2>
-      <div className="text-sm text-other">
-        <div dangerouslySetInnerHTML={{ __html: data.content }}></div>
-      </div>
+      <h2 className="mb-4 text-2xl font-extrabold leading-7 text-biru-uho">
+        {data.title}
+      </h2>
+      <div
+        className="text-sm text-other"
+        dangerouslySetInnerHTML={{ __html: data.content }}
+      ></div>
 
       {data.link == "/formulir" && (
         <Link
