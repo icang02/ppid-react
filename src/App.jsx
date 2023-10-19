@@ -22,6 +22,10 @@ function App() {
           <Route path="/visi-misi" element={<Tentang />} />
           <Route path="/tugas-fungsi" element={<Tentang />} />
           <Route path="/struktur-ppid" element={<Tentang />} />
+          <Route path="/informasi-publik/berkala" element={<Tentang />} />
+          <Route path="/informasi-publik/setiap-saat" element={<Tentang />} />
+          <Route path="/informasi-publik/serta-merta" element={<Tentang />} />
+          <Route path="/informasi-publik/dikecualikan" element={<Tentang />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

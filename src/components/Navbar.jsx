@@ -45,7 +45,9 @@ export const Navbar = () => {
       className={`${isSticky ? "fixed" : "absolute"} z-50 w-full bg-primary`}
     >
       <div
-        className={`container mx-auto flex items-center justify-between px-3 py-3 transition-all duration-500`}
+        className={`${
+          isSticky ? "px-3 py-2.5" : "px-3 py-3"
+        } container mx-auto flex items-center justify-between  transition-all duration-500`}
       >
         <Link to="/" onClick={handleScrollToTop}>
           <img src={logo} width={isSticky ? "135" : "170"} />
@@ -53,7 +55,7 @@ export const Navbar = () => {
 
         <ul
           className={`${menuClick ? "block" : "hidden"} ${
-            isSticky ? "top-[65px]" : "top-[84px]"
+            isSticky ? "top-[69px]" : "top-[84px]"
           } absolute left-0 right-0 mx-3 bg-white text-sm font-normal shadow`}
         >
           <li className="flex flex-col text-center">
@@ -124,25 +126,29 @@ export const Navbar = () => {
               } flex-col text-center transition-all duration-500`}
             >
               <Link
-                to="/profil"
+                onClick={handleScrollToTop}
+                to="/informasi-publik/berkala"
                 className="border py-3.5 tracking-wide hover:bg-[#eeeeee] hover:text-acsent"
               >
                 Informasi Berkala
               </Link>
               <Link
-                to="/visi-misi"
+                onClick={handleScrollToTop}
+                to="/informasi-publik/setiap-saat"
                 className="border py-3.5 tracking-wide hover:bg-[#eeeeee] hover:text-acsent"
               >
                 Informasi Tersedia Setiap Saat
               </Link>
               <Link
-                to="/tugas-fungsi"
+                onClick={handleScrollToTop}
+                to="/informasi-publik/serta-merta"
                 className="border py-3.5 tracking-wide hover:bg-[#eeeeee] hover:text-acsent"
               >
                 Informasi Serta Merta
               </Link>
               <Link
-                to="/struktur-ppid"
+                onClick={handleScrollToTop}
+                to="/informasi-publik/dikecualikan"
                 className="border py-3.5 tracking-wide hover:bg-[#eeeeee] hover:text-acsent"
               >
                 Informasi Dikecualikan
@@ -221,7 +227,9 @@ export const Navbar = () => {
         </ul>
 
         <div
-          className="cursor-pointer pr-2 text-4xl text-white"
+          className={`${
+            isSticky ? "text-3xl" : "text-4xl"
+          } cursor-pointer pr-2 text-white transition-all duration-300`}
           onClick={() => setMenuClick(!menuClick)}
         >
           {menuClick ? <IoCloseOutline /> : <IoMenuOutline />}

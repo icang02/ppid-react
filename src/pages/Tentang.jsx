@@ -6,6 +6,7 @@ import Footer2 from "../components/Footer2";
 import { useEffect } from "react";
 
 import bgHero from "../assets/img/rektorat2.png";
+import tuguImg from "../assets/img/tugu.png";
 import { useLocation } from "react-router-dom";
 
 const Formulir = () => {
@@ -51,6 +52,25 @@ const Formulir = () => {
       title: "Struktur Organisasi PPID UHO",
       content:
         "<p>Struktur PPID Universitas Halu Oleo dapat dilihat pada gambar berikut.</p>",
+      path: currentPath,
+    };
+  } else if (currentPath === "/informasi-publik/berkala") {
+    data = {
+      bgHero: tuguImg,
+      titleMenu: "Informasi Berkala",
+      title:
+        "Informasi Publik Yang Wajib Disediakan dan Diumumkan Secara Berkala",
+      content:
+        "<p>Setiap Badan Publik wajib mengumumkan informasi publik secara berkala. Informasi berkala merupakan informasi yang diperbaharui kemudian disediakan dan diumumkan kepada publik secara rutin atau berkala sekurang-kurangnya setiap 6 bulan sekali. Informasi berkala mengenai kegiatan dan kinerja Badan Publik terkait; informasi mengenai laporan keuangan; dan atau informasi lain yang diatur dalam peraturan perundang-undangan. Adapun informasi berkala yang ada di Universitas Halu Oleo sebagai berikut :</p>",
+      path: currentPath,
+    };
+  } else if (currentPath === "/informasi-publik/setiap-saat") {
+    data = {
+      bgHero: tuguImg,
+      titleMenu: "Informasi Tersedia Setiap Saat",
+      title: "Informasi Tersedia Setiap Saat",
+      content:
+        "<p>Informasi Tersedia Setiap Saat adalah informasi yang siap tersedia untuk bisa langsung diberikan kepada Pemohon Informasi Publik ketika terdapat permohonan mengajukan permohonan atas Informasi Publik tersebut.</p>",
       path: currentPath,
     };
   }

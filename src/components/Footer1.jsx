@@ -8,7 +8,7 @@ const Footer1 = () => {
               Pejabat Pengelola Informasi dan Dokumentasi (PPID)
             </h6>
             <div className="h-0.5 w-full bg-acsent"></div>
-            <p className="mt-4 text-sm leading-5 text-white opacity-80">
+            <p className="mt-4 text-xs leading-5 text-white opacity-80">
               Kampus Hijau Bumi Tridharma, Jl. HEA Mokodompit, Sulawesi Tenggara
             </p>
           </div>
@@ -18,7 +18,7 @@ const Footer1 = () => {
               Waktu Layanan
             </h6>
             <div className="h-0.5 w-full bg-acsent"></div>
-            <p className="mt-4 text-sm leading-5 text-white opacity-80">
+            <p className="mt-4 text-xs leading-5 text-white opacity-80">
               Senin - Jumat 08:00-16:00 WITA
             </p>
           </div>
@@ -28,7 +28,7 @@ const Footer1 = () => {
               Hubungi Kami
             </h6>
             <div className="h-0.5 w-full bg-acsent"></div>
-            <p className="mt-4 text-sm leading-5 text-white opacity-80">
+            <p className="mt-4 text-xs leading-5 text-white opacity-80">
               Contact Center: - Email: ppid@ppid.uho.ac.id WhatsApp: -
               Instagram: ppid_uho
             </p>
