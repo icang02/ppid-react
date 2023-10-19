@@ -46,14 +46,10 @@ export const Navbar = () => {
 
   return (
     <nav
-      className={`${isSticky ? "fixed" : "absolute"} z-50 w-full bg-primary`}
+      className={`${
+        isSticky ? "fixed" : "absolute"
+      } bline z-50 w-full bg-primary`}
     >
-      <LoadingBar
-        color="#2998ff"
-        progress={progress}
-        onLoaderFinished={() => setProgress(0)}
-      />
-      ;
       <div
         className={`${
           isSticky ? "px-3 py-2.5" : "px-3 py-3"
@@ -62,7 +58,13 @@ export const Navbar = () => {
         <Link to="/" onClick={handleScrollToTop}>
           <img src={logo} width={isSticky ? "135" : "170"} />
         </Link>
-
+        {/* LOADING PROGRESS BAR */}
+        <LoadingBar
+          color="#2998ff"
+          progress={progress}
+          onLoaderFinished={() => setProgress(0)}
+        />
+        ;
         <ul
           className={`${menuClick ? "block" : "hidden"} ${
             isSticky ? "top-[69px]" : "top-[84px]"
@@ -235,7 +237,6 @@ export const Navbar = () => {
             </a>
           </li>
         </ul>
-
         <div
           className={`${
             isSticky ? "text-3xl" : "text-4xl"
