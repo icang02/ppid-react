@@ -46,9 +46,7 @@ export const Navbar = () => {
 
   return (
     <nav
-      className={`${
-        isSticky ? "fixed" : "absolute"
-      } bline z-50 w-full bg-primary`}
+      className={`${isSticky ? "fixed" : "absolute"} z-50 w-full bg-primary`}
     >
       <div
         className={`${

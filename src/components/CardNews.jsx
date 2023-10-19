@@ -22,7 +22,7 @@ const CardNews = () => {
 
   return (
     <div className="my-10 rounded-lg shadow-lg">
-      <div className="border-b-[3px] border-black bg-[#EDEDED] px-4 py-4">
+      <div className="border-b-[3px] border-black bg-[#EDEDED] px-4 py-4 font-medium">
         Berita & Informasi Terbaru
       </div>
 

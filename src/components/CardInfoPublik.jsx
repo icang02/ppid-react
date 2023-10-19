@@ -41,12 +41,14 @@ const CardInfoPublik = ({ path }) => {
     <div className="mt-6 p-5 text-sm shadow-lg">
       {data.map((item, i) => (
         <div key={item.id}>
-          <div className="relative py-3 font-semibold">
+          <div
+            className="relative py-3 font-semibold"
+            onClick={() => toggleElement(i)}
+          >
             <h6
               className={`${
                 activeIndex === i && "text-acsent"
               } w-[90%] cursor-pointer`}
-              onClick={() => toggleElement(i)}
             >
               {item.title}
             </h6>
@@ -61,13 +63,19 @@ const CardInfoPublik = ({ path }) => {
 
           <div
             className={`transition-height duration-500 ease-in-out ${
-              activeIndex === i ? "max-h-[1000px] pb-3" : "max-h-0"
+              activeIndex === i ? "max-h-[1000px]" : "max-h-0"
             } overflow-hidden`}
           >
             {item.body}
           </div>
 
-          {i < data.length - 1 && <hr />}
+          {i < data.length - 1 && (
+            <hr
+              className={`${
+                activeIndex === i && "mt-3"
+              } transition-all duration-500`}
+            />
+          )}
         </div>
       ))}
     </div>

@@ -17,7 +17,6 @@ const Formulir = () => {
   const currentPath = useLocation().pathname;
 
   let data = {};
-
   if (currentPath === "/profil") {
     data = {
       bgHero,
@@ -71,6 +70,15 @@ const Formulir = () => {
       title: "Informasi Tersedia Setiap Saat",
       content:
         "<p>Informasi Tersedia Setiap Saat adalah informasi yang siap tersedia untuk bisa langsung diberikan kepada Pemohon Informasi Publik ketika terdapat permohonan mengajukan permohonan atas Informasi Publik tersebut.</p>",
+      path: currentPath,
+    };
+  } else if (currentPath === "/informasi-publik/dikecualikan") {
+    data = {
+      bgHero: tuguImg,
+      titleMenu: "Informasi Yang Dikecualikan",
+      title: "Informasi Yang Dikecualikan",
+      content:
+        "<h6>Informasi publik yang dikecualikan tidak dapat diberikan kepada pemohon informasi publik.</h6><p>Adapun Daftar Informasi yang Dikecualikan di Universitas Halu Oleo sebagai berikut :</p><ol><li>Soal dan Jawaban Tes Ujian Masuk Mahasiswa.</li><li>Kriteria Pengolahan Nilai, Penyajian Data, dan Pertimbangan Seleksi Ujian Mandiri.</li><li>Data Pribadi : <ul><li>Pegawai (Dosen dan Tenaga Kependidikan);</li><li>Mahasiswa;</li><li>Alumni.</li></ul></li><li>Dokumen Audit Internal, Laporan Hasil Audit Internal, dan Laporan Keuangan yang Belum diAudit (Unaudited).</li><li>Rancangan peraturan dan keputusan.</li><li>Identitas Informan, Pelapor, dan Korban.</li><li>Dokumen penilaian hasil pengujian skripsi, tesis, dan disertasi dari penilai (Hasil review proposal dan rekomendasi penilai).</li><li>Konfigurasi Data Centre, Database dan Aplikasi, serta Username dan Password.</li></ol>",
       path: currentPath,
     };
   }
