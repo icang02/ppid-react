@@ -5,7 +5,11 @@ import { IoCloseOutline } from "react-icons/io5";
 import { IoChevronDown } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
+import LoadingBar from "react-top-loading-bar";
+
 export const Navbar = () => {
+  const [progress, setProgress] = useState(100);
+
   const [menuClick, setMenuClick] = useState(false);
   const [listMenuClick, setListMenuClick] = useState(false);
   const [listMenuClick2, setListMenuClick2] = useState(false);
@@ -44,6 +48,12 @@ export const Navbar = () => {
     <nav
       className={`${isSticky ? "fixed" : "absolute"} z-50 w-full bg-primary`}
     >
+      <LoadingBar
+        color="#2998ff"
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
+      ;
       <div
         className={`${
           isSticky ? "px-3 py-2.5" : "px-3 py-3"
