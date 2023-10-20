@@ -22,36 +22,36 @@ const Formulir = () => {
             <div className="mt-5 flex flex-col gap-1">
               <Link
                 to="/formulir/permohonan-informasi-publik"
-                className="group relative bg-biru-uho px-5 py-4 text-sm text-white"
+                className="group relative bg-biru-uho px-5 py-4 text-sm text-white transition-all duration-500"
               >
-                <span className="inline-block w-[90%] text-xs opacity-90">
+                <span className="inline-block w-[90%] text-xs opacity-90 group-hover:opacity-100">
                   Formulir Permohonan Informasi Publik
                 </span>
-                <span className="absolute right-5 top-[50%] translate-y-[-50%] transition-all duration-500 group-hover:right-3">
+                <span className="absolute right-5 top-[50%] translate-y-[-50%] opacity-80 transition-all duration-500 group-hover:right-3 group-hover:opacity-100">
                   <IoArrowRedo />
                 </span>
               </Link>
 
               <Link
                 to="/formulir/keberatan-layanan-informasi-publik"
-                className="group relative bg-biru-uho px-5 py-4 text-sm text-white"
+                className="group relative bg-biru-uho px-5 py-4 text-sm text-white transition-all duration-500"
               >
-                <span className="inline-block w-[90%] text-xs opacity-90">
+                <span className="inline-block w-[90%] text-xs opacity-90 group-hover:opacity-100">
                   Formulir Keberatan Atas Layanan Informasi Publik
                 </span>
-                <span className="absolute right-5 top-[50%] translate-y-[-50%] transition-all duration-500 group-hover:right-3">
+                <span className="absolute right-5 top-[50%] translate-y-[-50%] opacity-80 transition-all duration-500 group-hover:right-3 group-hover:opacity-100">
                   <IoArrowRedo />
                 </span>
               </Link>
 
               <Link
                 to="/formulir/penyelesaian-sengketa-informasi-publik"
-                className="group relative bg-biru-uho px-5 py-4 text-sm text-white"
+                className="group relative bg-biru-uho px-5 py-4 text-sm text-white transition-all duration-500"
               >
-                <span className="inline-block w-[90%] text-xs opacity-90">
+                <span className="inline-block w-[90%] text-xs opacity-90 group-hover:opacity-100">
                   Formulir Penyelesaian Sengketa Informasi Publik
                 </span>
-                <span className="absolute right-5 top-[50%] translate-y-[-50%] transition-all duration-500 group-hover:right-3">
+                <span className="absolute right-5 top-[50%] translate-y-[-50%] opacity-80 transition-all duration-500 group-hover:right-3 group-hover:opacity-100">
                   <IoArrowRedo />
                 </span>
               </Link>

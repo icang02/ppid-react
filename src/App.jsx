@@ -12,6 +12,7 @@ import { Helmet } from "react-helmet";
 import logo from "./assets/img/favicon.ico";
 import NotFound from "./pages/NotFound";
 import DetailBerita from "./pages/DetailBerita";
+import Berita from "./pages/Berita";
 
 function App() {
   const handleAdminRedirect = () => {
@@ -54,6 +55,7 @@ function App() {
             element={<Formulir />}
           />
 
+          <Route path="/berita" element={<Berita />} />
           <Route path="/berita/:slug" element={<DetailBerita />} />
 
           {/* Handle untuk halaman admin */}

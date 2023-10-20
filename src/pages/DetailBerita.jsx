@@ -38,7 +38,7 @@ const DetailBerita = () => {
   };
   const breadcrumb = (
     <>
-      <Link to="/berita">{data.titleMenu}</Link>
+      <Link to="/berita">Berita & Informasi</Link>
       <IoChevronForwardOutline />
       <Link to="/formulir" className="text-acsent">
         Detail
@@ -50,6 +50,7 @@ const DetailBerita = () => {
     <>
       <Navbar />
       <Hero data={data} />
+
       <div className="container mx-auto px-3 py-10">
         <div className="flex items-center gap-0.5 text-xs text-other">
           <Link to="/">Beranda</Link> <IoChevronForwardOutline />

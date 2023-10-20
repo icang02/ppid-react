@@ -37,12 +37,15 @@ const BeritaUtama = () => {
         <h2 className="text-center text-2xl font-bold">Berita & Informasi</h2>
 
         <div className="mt-12">
-          <a className="mb-3 mr-2 flex items-center justify-end text-xs opacity-90 transition-all duration-500 hover:opacity-100">
+          <Link
+            to="/berita"
+            className="mb-3 mr-2 flex items-center justify-end text-xs opacity-90 transition-all duration-500 hover:opacity-100"
+          >
             Lihat Semua
             <span>
               <IoArrowForward />
             </span>
-          </a>
+          </Link>
 
           <div className="grid grid-cols-1 gap-7">
             {data.map((item, i) => (

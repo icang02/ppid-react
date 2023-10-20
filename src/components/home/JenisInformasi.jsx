@@ -1,110 +1,97 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+import img1 from "../../assets/img/informasi berkala.png";
+import img2 from "../../assets/img/informasi sedia tiap saat.png";
+import img3 from "../../assets/img/informasi serta merta.png";
+
 const JenisInformasi = () => {
-  const [activeElement, setActiveElement] = useState("informasi-berkala");
+  const [activeElement, setActiveElement] = useState("Informasi Berkala");
 
   const handleElementClick = (elementId) => {
     setActiveElement(elementId);
   };
 
+  const data = [
+    {
+      title: "Informasi Berkala",
+      content:
+        "Informasi Berkala merupakan informasi yang diperbarui kemudian disediakan dan diumumkan kepada publik secara rutin atau berkala sekurang-kurangnya setiap 6 bulan sekali.",
+      img: img1,
+      path: "/informasi-publik/berkala",
+    },
+    {
+      title: "Informasi Tersedia Setiap Saat",
+      content:
+        "Informasi Tersedia Setiap Saat adalah informasi yang siap tersedia untuk bisa langsung diberikan kepada Pemohon Informasi Publik ketika terdapat permohonan mengajukan permohonan atas Informasi Publik tersebut.",
+      img: img2,
+      path: "/informasi-publik/setiap-saat",
+    },
+    {
+      title: "Informasi Serta Merta",
+      content:
+        "Informasi Serta Merta adalah informasi berkaitan dengan hajat hidup orang banyak dan ketertiban umum, serta wajib diumumkan secara serta merta tanpa penundaan.",
+      img: img3,
+      path: "/informasi-publik/serta-merta",
+    },
+  ];
+
   return (
     <section id="jenisInformasi">
-      <div className="container mx-auto px-3 py-32 pt-28">
-        <h5 className="mb-2 text-center font-bold text-acsent">PPID UHO</h5>
-        <h2 className="text-center text-2xl font-bold">
+      <div className="container mx-auto px-3 py-32 pt-28 xl:max-w-7xl">
+        <h5 className="mb-2 text-center font-bold text-acsent lg:text-xl">
+          PPID UHO
+        </h5>
+        <h2 className="text-center text-2xl font-bold lg:text-3xl">
           Jenis - Jenis informasi
         </h2>
 
-        <div className="mt-5 flex flex-col items-center gap-2">
-          <div
-            onClick={() => handleElementClick("informasi-berkala")}
-            className={`${
-              activeElement === "informasi-berkala" && "text-acsent"
-            } rounded px-7 py-3 text-sm font-semibold shadow-md`}
-          >
-            Informasi Berkala
-          </div>
-          <div
-            onClick={() => handleElementClick("informasi-tersedia")}
-            className={`${
-              activeElement === "informasi-tersedia" && "text-acsent"
-            } rounded px-7 py-3 text-sm font-semibold shadow-md`}
-          >
-            Informasi Tersedia Setiap Saat
-          </div>
-          <div
-            onClick={() => handleElementClick("informasi-serta-merta")}
-            className={`${
-              activeElement === "informasi-serta-merta" && "text-acsent"
-            } rounded px-7 py-3 text-sm font-semibold shadow-md`}
-          >
-            Informasi Serta Merta
-          </div>
+        <div className="mt-5 flex flex-col items-center justify-center gap-2 lg:mt-10 lg:flex-row">
+          {data.map((item, i) => (
+            <div
+              key={i}
+              onClick={() => handleElementClick(item.title)}
+              className={`${
+                activeElement === item.title && "text-acsent"
+              } cursor-pointer rounded px-7 py-3 text-sm font-semibold shadow-md lg:text-base`}
+            >
+              {item.title}
+            </div>
+          ))}
         </div>
 
-        {activeElement === "informasi-berkala" && (
-          <div className="mt-10 rounded-lg p-10 text-center shadow-lg">
-            <div className="hidden">sdfsfd</div>
-            <div>
-              <h5 className="mb-5 text-xl font-bold">Informasi Berkala</h5>
-              <p className="mb-5 text-sm text-other">
-                Informasi Berkala merupakan informasi yang diperbarui kemudian
-                disediakan dan diumumkan kepada publik secara rutin atau berkala
-                sekurang-kurangnya setiap 6 bulan sekali.
-              </p>
-              <Link
-                to="informasi-publik/berkala"
-                className="text-sm font-medium italic text-blue-600"
-              >
-                Selengkapnya..
-              </Link>
-            </div>
-          </div>
-        )}
+        {data.map((item, i) => (
+          <div key={i}>
+            {activeElement === item.title && (
+              <div className="mt-10 grid grid-cols-12 rounded-lg text-center shadow-lg lg:mx-auto lg:max-w-6xl xl:text-left">
+                <div className="col-span=12 hidden lg:col-span-4 xl:block">
+                  <img
+                    src={item.img}
+                    alt="image"
+                    className="h-full w-96 rounded-l-lg border-r object-cover"
+                  />
+                </div>
 
-        {activeElement === "informasi-tersedia" && (
-          <div className="mt-10 rounded-lg p-10 text-center shadow-lg">
-            <div className="hidden">sdfsfd</div>
-            <div>
-              <h5 className="mb-5 text-xl font-bold">
-                Informasi Tersedia Setiap saat
-              </h5>
-              <p className="mb-5 text-sm text-other">
-                Informasi Tersedia Setiap Saat adalah informasi yang siap
-                tersedia untuk bisa langsung diberikan kepada Pemohon Informasi
-                Publik ketika terdapat permohonan mengajukan permohonan atas
-                Informasi Publik tersebut.
-              </p>
-              <Link
-                to="/informasi-publik/setiap-saat"
-                className="text-sm font-medium italic text-blue-600"
-              >
-                Selengkapnya..
-              </Link>
-            </div>
+                <div className="col-span-12 flex items-center px-8 py-10 lg:col-span-8 lg:px-20 lg:py-16">
+                  <div>
+                    <h5 className="mb-5 text-2xl font-bold lg:mb-7">
+                      {item.title}
+                    </h5>
+                    <p className="mb-5 text-sm text-other lg:mb-7 lg:text-base">
+                      {item.content}
+                    </p>
+                    <Link
+                      to={item.path}
+                      className="text-sm font-medium italic text-blue-600 lg:text-base"
+                    >
+                      Selengkapnya..
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
-        )}
-
-        {activeElement === "informasi-serta-merta" && (
-          <div className="mt-10 rounded-lg p-10 text-center shadow-lg">
-            <div className="hidden">aaaa</div>
-            <div>
-              <h5 className="mb-5 text-xl font-bold">Informasi Serta Merta</h5>
-              <p className="mb-5 text-sm text-other">
-                Informasi Serta Merta adalah informasi berkaitan dengan hajat
-                hidup orang banyak dan ketertiban umum, serta wajib diumumkan
-                secara serta merta tanpa penundaan.
-              </p>
-              <Link
-                to="informasi-publik/serta-merta"
-                className="text-sm font-medium italic text-blue-600"
-              >
-                Selengkapnya..
-              </Link>
-            </div>
-          </div>
-        )}
+        ))}
       </div>
     </section>
   );
