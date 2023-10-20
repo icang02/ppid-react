@@ -21,7 +21,7 @@ const Formulir = () => {
             </p>
             <div className="mt-5 flex flex-col gap-1">
               <Link
-                to="/formulir"
+                to="/formulir/permohonan-informasi-publik"
                 className="group relative bg-biru-uho px-5 py-4 text-sm text-white"
               >
                 <span className="inline-block w-[90%] text-xs opacity-90">
@@ -33,7 +33,7 @@ const Formulir = () => {
               </Link>
 
               <Link
-                to="/formulir"
+                to="/formulir/keberatan-layanan-informasi-publik"
                 className="group relative bg-biru-uho px-5 py-4 text-sm text-white"
               >
                 <span className="inline-block w-[90%] text-xs opacity-90">
@@ -45,11 +45,11 @@ const Formulir = () => {
               </Link>
 
               <Link
-                to="/formulir"
+                to="/formulir/penyelesaian-sengketa-informasi-publik"
                 className="group relative bg-biru-uho px-5 py-4 text-sm text-white"
               >
                 <span className="inline-block w-[90%] text-xs opacity-90">
-                  Formulir Penyelesaian Sengketa Informasi
+                  Formulir Penyelesaian Sengketa Informasi Publik
                 </span>
                 <span className="absolute right-5 top-[50%] translate-y-[-50%] transition-all duration-500 group-hover:right-3">
                   <IoArrowRedo />

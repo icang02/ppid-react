@@ -7,6 +7,7 @@ import { useEffect } from "react";
 
 import bgHero from "../assets/img/rektorat2.png";
 import tuguImg from "../assets/img/tugu.png";
+import regulasiBg from "../assets/img/bg-regulasi.png";
 import { Link, useLocation } from "react-router-dom";
 
 const Formulir = () => {
@@ -81,7 +82,17 @@ const Formulir = () => {
         "<h6>Informasi publik yang dikecualikan tidak dapat diberikan kepada pemohon informasi publik.</h6><p>Adapun Daftar Informasi yang Dikecualikan di Universitas Halu Oleo sebagai berikut :</p><ol><li>Soal dan Jawaban Tes Ujian Masuk Mahasiswa.</li><li>Kriteria Pengolahan Nilai, Penyajian Data, dan Pertimbangan Seleksi Ujian Mandiri.</li><li>Data Pribadi : <ul><li>Pegawai (Dosen dan Tenaga Kependidikan);</li><li>Mahasiswa;</li><li>Alumni.</li></ul></li><li>Dokumen Audit Internal, Laporan Hasil Audit Internal, dan Laporan Keuangan yang Belum diAudit (Unaudited).</li><li>Rancangan peraturan dan keputusan.</li><li>Identitas Informan, Pelapor, dan Korban.</li><li>Dokumen penilaian hasil pengujian skripsi, tesis, dan disertasi dari penilai (Hasil review proposal dan rekomendasi penilai).</li><li>Konfigurasi Data Centre, Database dan Aplikasi, serta Username dan Password.</li></ol>",
       path: currentPath,
     };
+  } else if (currentPath === "/regulasi") {
+    data = {
+      bgHero: regulasiBg,
+      titleMenu: "Regulasi",
+      title: "Regulasi PPID",
+      content:
+        '<h5 style="text-align: center;">Regulasi Mengenai Keterbukaan Informasi Publik</h5> <ul> <li><a href="https://drive.google.com/file/d/1JuE3iA-XTkse99MolMovn5UGlX3lgafj/view?usp=sharing" target="_blank" rel="noopener">Undang-Undang Nomor 14 Tahun 2008 Tentang Keterbukaan Informasi Publik</a></li> <li><a href="https://drive.google.com/file/d/1UesmKcx2GA71Ld4-lwvF37LhtffVbLdg/view?usp=sharing" target="_blank" rel="noopener">Undang-Undang Nomor 25 Tahun 2009 Tentang Pelayanan Publik</a></li> <li><a href="https://drive.google.com/file/d/1I7hkz65HzNhKO7mkmc5XAYcqO5964Y5f/view?usp=sharing" target="_blank" rel="noopener">Undang-Undang Nomor 43 Tahun 2009 Tentang Kearsipan</a></li> <li><a href="https://drive.google.com/file/d/1ywY0t_mxdUz_QdNhzSV92SE0QeRJys9L/view?usp=sharing" target="_blank" rel="noopener">Peraturan Pemerintah Republik Indonesia Nomor 61 Tahun 2010 tentang Pelaksanaan Undang-Undang Nomor 14 Tahun 2008 tentang Keterbukaan Informasi Publik</a></li> <li><a href="https://drive.google.com/file/d/1xYNTMfYXhwfAjwrEee30Zlu_sEC2P2I5/view?usp=sharing" target="_blank" rel="noopener">Peraturan Komisi Informasi Pusat Nomor 01 Tahun 2022 Tentang Monitoring dan Evaluasi Keterbukaan Informasi Publik</a></li> <li><a href="https://drive.google.com/file/d/1kSXMnSFcqKn8IR93Pqx7uEGObO-_7DIH/view?usp=sharing" target="_blank" rel="noopener">Peraturan Komisi Informasi Nomor 1 Tahun 2021 tentang Standar Layanan Informasi Publik</a></li> <li><a href="https://drive.google.com/file/d/1Z8Ev63rF56Q3sIAMxf91Ra1fs-E4JnLK/view?usp=sharing" target="_blank" rel="noopener">Peraturan Komisi Informasi Pusat Nomor 01 Tahun 2017 tentang Pengklasifikasian Informasi Publik</a></li> <li><a href="https://drive.google.com/file/d/1nRvJTo0XvG_J7-ge3nBT1wrYW0qDS2l8/view?usp=sharing" target="_blank" rel="noopener">Peraturan Komisi Informasi Nomor 1 Tahun 2013 tentang Prosedur Penyelesaian Sengketa Informasi Publik</a></li> <li><a href="https://drive.google.com/file/d/1zkvC6PxTUGlKdQPMEnhFd4wwok6bbKy0/view?usp=sharing" target="_blank" rel="noopener">Peraturan Menteri Pendidikan dan Kebudayaan Republik Indonesia Nomor 41 Tahun 2020 tentang Layanan Informasi Publik di Kementerian Pendidikan dan Kebudayaan</a></li> </ul>',
+      path: currentPath,
+    };
   }
+
   const breadcrumb = (
     <>
       <Link

@@ -44,7 +44,7 @@ const Content = ({ data, breadcrumb }) => {
           )}
 
           {/* INI KHUSUS UNTUK FORMULIR */}
-          {data.path == "/formulir" && (
+          {data.path.includes("formulir") && (
             <Link
               href="/formulir"
               className="mt-7 inline-block rounded bg-biru-uho px-4 py-3 text-xs text-white"
@@ -61,7 +61,12 @@ const Content = ({ data, breadcrumb }) => {
 
         {/* INI CARD NEWS */}
         <div className="col-span-1">
-          {data.path != "/formulir" && <CardNews />}
+          <div className="hidden w-full">
+            <img src={img} alt="image" />
+          </div>
+
+          {!data.path.includes("formulir") &&
+            !data.path.includes("regulasi") && <CardNews />}
         </div>
       </div>
     </div>

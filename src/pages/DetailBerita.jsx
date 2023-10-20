@@ -6,7 +6,11 @@ import bgHero from "../assets/img/detail-berita.jpg";
 import Hero from "../components/formulir/Hero";
 import imgBerita from "../assets/img/berita.jpg";
 
-import { IoChevronForwardOutline, IoTodaySharp } from "react-icons/io5";
+import {
+  IoChevronForwardOutline,
+  IoPersonSharp,
+  IoTodaySharp,
+} from "react-icons/io5";
 import CardNews from "../components/CardNews";
 import { useEffect } from "react";
 
@@ -69,7 +73,7 @@ const DetailBerita = () => {
                 <IoTodaySharp /> {data.content.tanggal}
               </span>
               <span className="flex items-center gap-1.5">
-                <IoTodaySharp /> {data.content.penulis}
+                <IoPersonSharp /> Oleh : {data.content.penulis}
               </span>
             </div>
 

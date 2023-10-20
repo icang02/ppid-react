@@ -230,12 +230,13 @@ export const Navbar = () => {
               </Link>
             </div>
 
-            <a
-              href="#"
+            <Link
+              onClick={handleScrollToTop}
+              to="/regulasi"
               className="border py-3.5 tracking-widest hover:bg-[#eeeeee] hover:text-acsent"
             >
               Regulasi
-            </a>
+            </Link>
           </li>
         </ul>
         <div

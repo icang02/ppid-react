@@ -41,6 +41,21 @@
 .isi h6 {
   font-weight: 700;
 }
+.isi h1 {
+  font-size: 1.5em;
+}
+.isi h2 {
+  font-size: 1.4em;
+}
+.isi h3 {
+  font-size: 1.3em;
+}
+.isi h4 {
+  font-size: 1.2em;
+}
+.isi h5 {
+  font-size: 1.1em;
+}
 .isi h1:not(:first-child),
 .isi h2:not(:first-child),
 .isi h3:not(:first-child),

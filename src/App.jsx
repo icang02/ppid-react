@@ -1,4 +1,10 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+
 import Home from "./pages/Home";
 import Formulir from "./pages/Formulir";
 import Tentang from "./pages/Tentang";
@@ -8,6 +14,11 @@ import NotFound from "./pages/NotFound";
 import DetailBerita from "./pages/DetailBerita";
 
 function App() {
+  const handleAdminRedirect = () => {
+    window.location.href = "http://ppid.uho.ac.id/admin";
+    return null;
+  };
+
   return (
     <div className="font-poppins">
       <Helmet>
@@ -23,6 +34,7 @@ function App() {
           <Route path="/visi-misi" element={<Tentang />} />
           <Route path="/tugas-fungsi" element={<Tentang />} />
           <Route path="/struktur-ppid" element={<Tentang />} />
+          <Route path="/regulasi" element={<Tentang />} />
 
           <Route path="/informasi-publik/berkala" element={<Tentang />} />
           <Route path="/informasi-publik/setiap-saat" element={<Tentang />} />
@@ -43,6 +55,10 @@ function App() {
           />
 
           <Route path="/berita/:slug" element={<DetailBerita />} />
+
+          {/* Handle untuk halaman admin */}
+          {/* http://ppid.uho.ac.id/admin */}
+          <Route path="/admin" element={handleAdminRedirect} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
