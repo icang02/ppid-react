@@ -7,7 +7,7 @@ import { useEffect } from "react";
 
 import bgHero from "../assets/img/rektorat2.png";
 import tuguImg from "../assets/img/tugu.png";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Formulir = () => {
   useEffect(() => {
@@ -82,12 +82,23 @@ const Formulir = () => {
       path: currentPath,
     };
   }
+  const breadcrumb = (
+    <>
+      <Link
+        to={data.path}
+        className="text-acsent"
+        onClick={() => window.scrollTo(0, 0)}
+      >
+        {data.titleMenu}
+      </Link>
+    </>
+  );
 
   return (
     <>
       <Navbar />
       <Hero data={data} />
-      <Content data={data} />
+      <Content data={data} breadcrumb={breadcrumb} />
       <Footer1 />
       <Footer2 />
     </>

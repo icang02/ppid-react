@@ -4,6 +4,7 @@ import { IoArrowForward, IoTodaySharp } from "react-icons/io5";
 
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const BeritaUtama = () => {
   const [data, setData] = useState([]);
@@ -47,15 +48,24 @@ const BeritaUtama = () => {
             {data.map((item, i) => (
               <div className="col-span-1" key={item.id}>
                 <div className="rounded-lg shadow-lg">
-                  <img
-                    src={berita}
-                    className="aspect-[16/10] rounded-t-lg object-cover object-center"
-                  />
+                  <Link
+                    to="/berita/judul-slug-berita"
+                    className="block cursor-pointer overflow-hidden rounded-t-lg"
+                  >
+                    <img
+                      src={berita}
+                      alt="image"
+                      className="aspect-[16/10] object-cover object-center transition-all duration-500 hover:scale-110 hover:brightness-[.65]"
+                    />
+                  </Link>
                   <div className="mt-5 px-5 pb-5">
-                    <h6 className="font-bold leading-6">
+                    <Link
+                      to="/berita/judul-slug-berita"
+                      className="block font-bold leading-5 hover:underline"
+                    >
                       <TruncateText text={item.title} maxLength={100} />
-                    </h6>
-                    <div className="mt-1 flex items-center gap-1 text-xs text-[#6C757D]">
+                    </Link>
+                    <div className="mt-2 flex items-center gap-1 text-xs text-[#6C757D]">
                       <IoTodaySharp /> 2023-09-22
                     </div>
                     <p className="mt-3 text-sm text-other">

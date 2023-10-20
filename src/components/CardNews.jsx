@@ -32,10 +32,13 @@ const CardNews = () => {
             <div className="flex items-start gap-4 p-4" key={i}>
               <img
                 src={img}
-                className="aspect-[4/3] w-20 rounded object-cover"
+                className="aspect-[4/3] w-24 rounded object-cover"
               />
               <div>
-                <Link className="mb-1.5 inline-block font-bold leading-5 hover:underline">
+                <Link
+                  to="/berita/slug-berita-1"
+                  className="mb-1.5 inline-block font-bold leading-4 hover:underline"
+                >
                   Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                   Incidunt, temporibus!
                 </Link>

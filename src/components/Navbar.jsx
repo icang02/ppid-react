@@ -180,19 +180,22 @@ export const Navbar = () => {
               } flex-col text-center transition-all duration-500`}
             >
               <Link
-                to="/formulir"
+                onClick={handleScrollToTop}
+                to="/formulir/permohonan-informasi-publik"
                 className="border py-3.5 tracking-wide hover:bg-[#eeeeee] hover:text-acsent"
               >
                 Permohonan Informasi Publik
               </Link>
               <Link
-                to="/formulir"
+                onClick={handleScrollToTop}
+                to="/formulir/keberatan-layanan-informasi-publik"
                 className="border py-3.5 tracking-wide hover:bg-[#eeeeee] hover:text-acsent"
               >
                 Keberatan Layanan Informasi Publik
               </Link>
               <Link
-                to="/formulir"
+                onClick={handleScrollToTop}
+                to="/formulir/penyelesaian-sengketa-informasi-publik"
                 className="border py-3.5 tracking-wide hover:bg-[#eeeeee] hover:text-acsent"
               >
                 Penyelesaian Sengketa Informasi Publik

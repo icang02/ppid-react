@@ -4,14 +4,12 @@ import img from "../../assets/img/berita.jpg";
 import CardNews from "../CardNews";
 import CardInfoPublik from "../CardInfoPublik";
 
-const Content = ({ data }) => {
+const Content = ({ data, breadcrumb }) => {
   return (
     <div className="container mx-auto px-3 py-10">
       <div className="flex items-center gap-0.5 text-xs text-other">
-        Beranda <IoChevronForwardOutline />
-        <Link to="/formulir" className="text-acsent">
-          {data.titleMenu}
-        </Link>
+        <Link to="/">Beranda</Link> <IoChevronForwardOutline />
+        {breadcrumb}
       </div>
 
       <hr className="mb-5 mt-1" />
