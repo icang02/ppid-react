@@ -113,7 +113,7 @@ export const Navbar = () => {
       <div
         className={`${
           isSticky ? "px-3 py-2.5 xl:px-0 xl:py-3" : "px-3 py-3 xl:px-0 xl:py-5"
-        } container mx-auto flex items-center justify-between  transition-all duration-500 xl:max-w-7xl`}
+        } container mx-auto flex items-center justify-between  transition-all duration-500 xl:max-w-5xl 2xl:max-w-6xl`}
       >
         <Link to="/" onClick={handleScrollToTop}>
           <img src={logo} width={isSticky ? "135" : "170"} />
@@ -137,11 +137,7 @@ export const Navbar = () => {
             </NavLink>
 
             <div className="group">
-              <NavLink
-                onClick={handleScrollToTop}
-                to="/"
-                className="flex items-center gap-0.5 py-3.5 tracking-widest transition-all duration-500 group-hover:text-acsent"
-              >
+              <NavLink className="flex items-center gap-0.5 py-3.5 tracking-widest transition-all duration-500 group-hover:text-acsent">
                 Tentang <IoChevronDown />
               </NavLink>
 
@@ -164,11 +160,7 @@ export const Navbar = () => {
             </div>
 
             <div className="group">
-              <NavLink
-                onClick={handleScrollToTop}
-                to="/"
-                className="flex items-center gap-0.5 py-3.5 tracking-widest transition-all duration-500 group-hover:text-acsent"
-              >
+              <NavLink className="flex items-center gap-0.5 py-3.5 tracking-widest transition-all duration-500 group-hover:text-acsent">
                 Informasi Publik <IoChevronDown />
               </NavLink>
 
@@ -177,6 +169,7 @@ export const Navbar = () => {
                   {informasiPublik.map((item, i) => (
                     <>
                       <Link
+                        onClick={handleScrollToTop}
                         key={i}
                         to={item.path}
                         className="block py-3 pl-5 pr-7 tracking-wider duration-300 hover:bg-[#eeeeee] hover:text-acsent"
@@ -191,11 +184,7 @@ export const Navbar = () => {
             </div>
 
             <div className="group">
-              <NavLink
-                onClick={handleScrollToTop}
-                to="/"
-                className="flex items-center gap-0.5 py-3.5 tracking-widest transition-all duration-500 group-hover:text-acsent"
-              >
+              <NavLink className="flex items-center gap-0.5 py-3.5 tracking-widest transition-all duration-500 group-hover:text-acsent">
                 Laporan <IoChevronDown />
               </NavLink>
 
@@ -218,11 +207,7 @@ export const Navbar = () => {
             </div>
 
             <div className="group">
-              <NavLink
-                onClick={handleScrollToTop}
-                to="/"
-                className="flex items-center gap-0.5 py-3.5 tracking-widest transition-all duration-500 group-hover:text-acsent"
-              >
+              <NavLink className="flex items-center gap-0.5 py-3.5 tracking-widest transition-all duration-500 group-hover:text-acsent">
                 Formulir <IoChevronDown />
               </NavLink>
 
@@ -231,6 +216,7 @@ export const Navbar = () => {
                   {formulir.map((item, i) => (
                     <>
                       <Link
+                        onClick={handleScrollToTop}
                         key={i}
                         to={item.path}
                         className="block py-3 pl-5 pr-7 tracking-wider duration-300 hover:bg-[#eeeeee] hover:text-acsent"

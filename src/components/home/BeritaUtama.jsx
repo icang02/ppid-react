@@ -32,14 +32,18 @@ const BeritaUtama = () => {
 
   return (
     <section>
-      <div className="container mx-auto px-3 py-32 pt-28">
-        <h5 className="mb-2 text-center font-bold text-acsent">PPID UHO</h5>
-        <h2 className="text-center text-2xl font-bold">Berita & Informasi</h2>
+      <div className="container mx-auto px-3 py-32 pt-28 xl:max-w-5xl 2xl:max-w-6xl">
+        <h5 className="mb-2 text-center font-bold text-acsent lg:text-xl">
+          PPID UHO
+        </h5>
+        <h2 className="text-center text-2xl font-bold lg:text-3xl">
+          Berita & Informasi
+        </h2>
 
         <div className="mt-12">
           <Link
             to="/berita"
-            className="mb-3 mr-2 flex items-center justify-end text-xs opacity-90 transition-all duration-500 hover:opacity-100"
+            className="mb-3 mr-2 flex items-center justify-end text-xs opacity-90 transition-all duration-500 hover:opacity-100 lg:text-sm"
           >
             Lihat Semua
             <span>
@@ -47,9 +51,9 @@ const BeritaUtama = () => {
             </span>
           </Link>
 
-          <div className="grid grid-cols-1 gap-7">
+          <div className="grid grid-cols-12 gap-7">
             {data.map((item, i) => (
-              <div className="col-span-1" key={item.id}>
+              <div className="col-span-12 lg:col-span-4" key={item.id}>
                 <div className="rounded-lg shadow-lg">
                   <Link
                     to="/berita/judul-slug-berita"
@@ -64,14 +68,14 @@ const BeritaUtama = () => {
                   <div className="mt-5 px-5 pb-5">
                     <Link
                       to="/berita/judul-slug-berita"
-                      className="block font-bold leading-5 hover:underline"
+                      className="block font-bold leading-5 hover:underline lg:text-lg lg:leading-6"
                     >
                       <TruncateText text={item.title} maxLength={100} />
                     </Link>
-                    <div className="mt-2 flex items-center gap-1 text-xs text-[#6C757D]">
+                    <div className="mt-2 flex items-center gap-1 text-xs text-[#6C757D] lg:text-sm">
                       <IoTodaySharp /> 2023-09-22
                     </div>
-                    <p className="mt-3 text-sm text-other">
+                    <p className="mt-3 text-sm text-other lg:text-base lg:leading-5">
                       <TruncateText text={item.body} maxLength={100} />
                     </p>
                   </div>

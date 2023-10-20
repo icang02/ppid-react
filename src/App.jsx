@@ -39,7 +39,7 @@ function App() {
 
           <Route path="/informasi-publik/berkala" element={<Tentang />} />
           <Route path="/informasi-publik/setiap-saat" element={<Tentang />} />
-          <Route path="/informasi-publik/serta-merta" element={<Tentang />} />
+          <Route path="/informasi-publik/serta-merta" element={<Berita />} />
           <Route path="/informasi-publik/dikecualikan" element={<Tentang />} />
 
           <Route

@@ -64,17 +64,17 @@ const JenisInformasi = () => {
           <div key={i}>
             {activeElement === item.title && (
               <div className="mt-10 grid grid-cols-12 rounded-lg text-center shadow-lg lg:mx-auto lg:max-w-6xl xl:text-left">
-                <div className="col-span=12 hidden lg:col-span-4 xl:block">
+                <div className="col-span=12 hidden h-72 lg:col-span-4 xl:block">
                   <img
                     src={item.img}
                     alt="image"
-                    className="h-full w-96 rounded-l-lg border-r object-cover"
+                    className="h-full w-96 rounded-l-lg border border-r object-cover object-center"
                   />
                 </div>
 
-                <div className="col-span-12 flex items-center px-8 py-10 lg:col-span-8 lg:px-20 lg:py-16">
-                  <div>
-                    <h5 className="mb-5 text-2xl font-bold lg:mb-7">
+                <div className="col-span-12 flex items-center border px-8 py-10 lg:col-span-8 lg:px-20">
+                  <div className="">
+                    <h5 className="mb-5 text-xl font-bold lg:mb-7 lg:text-2xl">
                       {item.title}
                     </h5>
                     <p className="mb-5 text-sm text-other lg:mb-7 lg:text-base">

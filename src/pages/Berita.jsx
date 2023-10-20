@@ -42,7 +42,11 @@ const Berita = () => {
   };
   const breadcrumb = (
     <>
-      <Link to="/formulir" className="text-acsent">
+      <Link
+        to="/berita"
+        className="text-acsent"
+        onClick={() => window.scrollTo(0, 0)}
+      >
         Berita & Informasi
       </Link>
     </>
@@ -62,7 +66,7 @@ const Berita = () => {
       <Navbar />
       <Hero data={data} />
 
-      <div className="container mx-auto px-3 py-20 lg:pt-14 xl:max-w-6xl">
+      <div className="container mx-auto px-3 py-20 pt-10 xl:max-w-6xl">
         <div className="flex items-center gap-0.5 text-xs text-other lg:text-sm">
           <Link to="/">Beranda</Link> <IoChevronForwardOutline />
           {breadcrumb}
@@ -74,7 +78,7 @@ const Berita = () => {
           {berita.map((item, i) => (
             <div className="col-span-1" key={i}>
               <div className="grid grid-cols-12 rounded-lg shadow-lg">
-                <div className="col-span-12 lg:col-span-4">
+                <div className="col-span-12 border lg:col-span-4">
                   <Link
                     to="/berita/judul-slug-berita"
                     className="block cursor-pointer overflow-hidden rounded-t-lg lg:rounded-l-lg lg:rounded-tr-none"
@@ -87,7 +91,7 @@ const Berita = () => {
                   </Link>
                 </div>
 
-                <div className="col-span-12 lg:col-span-8 lg:flex lg:items-center lg:px-12">
+                <div className="col-span-12 border lg:col-span-8 lg:flex lg:items-center lg:rounded-tr-lg lg:px-12">
                   <div className="mt-5 px-5 pb-5 lg:m-0 lg:w-full lg:p-0">
                     <Link
                       to="/berita/judul-slug-berita"

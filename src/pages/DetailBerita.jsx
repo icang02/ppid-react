@@ -51,25 +51,29 @@ const DetailBerita = () => {
       <Navbar />
       <Hero data={data} />
 
-      <div className="container mx-auto px-3 py-10">
-        <div className="flex items-center gap-0.5 text-xs text-other">
+      <div className="container mx-auto px-3 py-10 xl:max-w-5xl 2xl:max-w-6xl">
+        <div className="flex items-center gap-0.5 text-xs text-other lg:text-sm">
           <Link to="/">Beranda</Link> <IoChevronForwardOutline />
           {breadcrumb}
         </div>
 
         <hr className="mb-5 mt-1" />
 
-        <div className="grid grid-cols-1">
-          <div className="col-span-1 mb-5">
+        <div className="grid grid-cols-12 justify-end gap-0 lg:gap-8">
+          <div className="order-1 col-span-12 mb-5 lg:order-2 lg:col-span-6">
             <img src={imgBerita} alt="image" className="w-full" />
+
+            {/* INI CARD NEWS */}
+            <div className="mt-8 hidden  justify-start lg:flex">
+              {data.path != "/formulir" && <CardNews />}
+            </div>
           </div>
 
-          <div className="col-span-1">
+          <div className="order-2 col-span-12 lg:order-1 lg:col-span-6">
             <h5 className="text-xl font-bold leading-6">
               {data.content.judul}
             </h5>
-
-            <div className="mt-2.5 flex items-center gap-5 text-xs text-[#6C757D]">
+            <div className="mb-5 mt-2.5 flex items-center gap-5 text-xs text-[#6C757D]">
               <span className="flex items-center gap-1.5">
                 <IoTodaySharp /> {data.content.tanggal}
               </span>
@@ -77,9 +81,6 @@ const DetailBerita = () => {
                 <IoPersonSharp /> Oleh : {data.content.penulis}
               </span>
             </div>
-
-            <hr className="my-5" />
-
             <div
               className="isi text-sm text-other"
               dangerouslySetInnerHTML={{ __html: data.content.isi }}
@@ -87,14 +88,15 @@ const DetailBerita = () => {
           </div>
 
           {/* INI GARIS */}
-          <div className="col-span-1">
-            <hr className="mt-10" />
+          <div className="col-span-12 hidden lg:order-4 lg:block">
+            <hr className="lg:mt-0" />
           </div>
+        </div>
 
-          {/* INI CARD NEWS */}
-          <div className="col-span-1">
-            {data.path != "/formulir" && <CardNews />}
-          </div>
+        {/* INI CARD NEWS */}
+        <div className="mt-8 block lg:hidden">
+          <hr />
+          {data.path != "/formulir" && <CardNews />}
         </div>
       </div>
       <Footer1 />

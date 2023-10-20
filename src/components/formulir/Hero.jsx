@@ -2,7 +2,7 @@ const Hero = ({ data }) => {
   return (
     <div
       style={{ backgroundImage: `url(${data.bgHero})` }}
-      className="flex h-96 items-center justify-center bg-cover bg-center pt-20 xl:h-[410px]"
+      className="flex h-96 items-center justify-center bg-cover bg-center pt-20 lg:pt-12 xl:h-[410px]"
     >
       <div>
         <h1 className="text-center text-xl font-extrabold text-white xl:text-3xl">

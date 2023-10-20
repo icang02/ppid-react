@@ -21,7 +21,7 @@ const CardNews = () => {
   }, []);
 
   return (
-    <div className="my-10 rounded-lg shadow-lg">
+    <div className="my-10 max-w-sm rounded-lg border shadow-lg lg:my-0">
       <div className="border-b-[3px] border-black bg-[#EDEDED] px-4 py-4 font-medium">
         Berita & Informasi Terbaru
       </div>
@@ -29,7 +29,7 @@ const CardNews = () => {
       <div className="pb-3 pt-2">
         {data.map((item, i) => (
           <div>
-            <div className="flex items-start gap-4 p-4" key={i}>
+            <div className="flex items-start gap-4 px-5 py-4 lg:px-6" key={i}>
               <img
                 src={img}
                 className="aspect-[4/3] w-24 rounded object-cover"
@@ -37,7 +37,7 @@ const CardNews = () => {
               <div>
                 <Link
                   to="/berita/slug-berita-1"
-                  className="mb-1.5 inline-block font-bold leading-4 hover:underline"
+                  className="mb-1.5 inline-block text-sm font-bold leading-5 hover:underline"
                 >
                   Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                   Incidunt, temporibus!

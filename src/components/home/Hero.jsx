@@ -6,7 +6,7 @@ const Hero = () => {
       style={{ backgroundImage: `url(${heroImg})` }}
       className="h-[100vh] bg-cover bg-center"
     >
-      <div className="container mx-auto flex h-full items-center justify-center pt-8 text-center xl:max-w-7xl xl:justify-start">
+      <div className="container mx-auto flex h-full items-center justify-center pt-8 text-center xl:max-w-5xl xl:justify-start 2xl:max-w-6xl">
         <div className="text-white lg:text-left">
           <h1 className="max-w-xs text-2xl font-black leading-9 lg:max-w-4xl lg:text-5xl lg:font-extrabold lg:leading-tight">
             <span className="text-acsent">Selamat</span> Datang di PPID
