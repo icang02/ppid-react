@@ -1,14 +1,34 @@
-import img1 from "../../assets/img/1.png";
-import img2 from "../../assets/img/2.png";
-import img3 from "../../assets/img/3.png";
-import img4 from "../../assets/img/4.png";
 import calculatorBg from "../../assets/images/calculator-bg.jpg";
 
+import { useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
+
+import config from "../../config";
+
 const Tatacara = () => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(`${config.API_URL}/landing/tata-cara`);
+        const jsonData = await response.json();
+
+        setData(jsonData);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    fetchData();
+  }, []);
+
   return (
     <section
       style={{ backgroundImage: `url(${calculatorBg})` }}
-      className="bg-cover bg-center"
+      className="overflow-x-hidden bg-cover bg-center"
     >
       <div className="container mx-auto px-3 py-24 xl:max-w-7xl">
         <h2 className="text-center text-2xl font-bold text-white lg:text-3xl">
@@ -16,42 +36,35 @@ const Tatacara = () => {
         </h2>
 
         <div className="mt-12 grid grid-cols-12 justify-center gap-10 lg:mt-16 lg:px-10">
-          <div className="col-span-12 px-20 lg:col-span-3 lg:px-0">
-            <img
-              src={img1}
-              className="w-full cursor-pointer border-[5px] border-white duration-300 hover:brightness-50"
-            />
-            <h6 className="mt-5 text-center text-sm font-bold text-white lg:text-base">
-              Tata Cara Permohonan Informasi Publik
-            </h6>
-          </div>
-          <div className="col-span-12 px-20 lg:col-span-3 lg:px-0">
-            <img
-              src={img2}
-              className="w-full cursor-pointer border-[5px] border-white duration-300 hover:brightness-50"
-            />
-            <h6 className="mt-5 text-center text-sm font-bold text-white lg:text-base">
-              Tata Cara Mengajukan Keberatan
-            </h6>
-          </div>
-          <div className="col-span-12 px-20 lg:col-span-3 lg:px-0">
-            <img
-              src={img3}
-              className="w-full cursor-pointer border-[5px] border-white duration-300 hover:brightness-50"
-            />
-            <h6 className="mt-5 text-center text-sm font-bold text-white lg:text-base">
-              Tata Cara Pengajuan Permohonan Sengketa
-            </h6>
-          </div>
-          <div className="col-span-12 px-20 lg:col-span-3 lg:px-0">
-            <img
-              src={img4}
-              className="w-full cursor-pointer border-[5px] border-white duration-300 hover:brightness-50"
-            />
-            <h6 className="mt-5 text-center text-sm font-bold text-white lg:text-base">
-              Prosedur Permohonan Penyelesaian Sengketa Informasi
-            </h6>
-          </div>
+          {loading
+            ? Array(4)
+                .fill(0)
+                .map((item, i) => (
+                  <div
+                    className="col-span-12 px-16 lg:col-span-3 lg:px-0"
+                    key={i}
+                  >
+                    <Skeleton className="aspect-square border-[5px] border-white" />
+                    <h6 className="mt-5 text-center text-sm font-bold text-white lg:text-base">
+                      <Skeleton count={2} />
+                    </h6>
+                  </div>
+                ))
+            : data.map((item, i) => (
+                <div
+                  className="col-span-12 px-16 lg:col-span-3 lg:px-0"
+                  key={i}
+                >
+                  <img
+                    src={`http://127.0.0.1:8000/${item.gambar}`}
+                    alt="image"
+                    className="w-full cursor-pointer border-[5px] border-white duration-300 hover:brightness-50"
+                  />
+                  <h6 className="mt-5 text-center text-sm font-bold text-white lg:text-base">
+                    {item.judul}
+                  </h6>
+                </div>
+              ))}
         </div>
       </div>
     </section>

@@ -1,6 +1,30 @@
 import calculatorBg from "../../assets/images/calculator-bg.jpg";
 
+import { useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
+
+import config from "../../config";
+
 const Slogan = () => {
+  const [data, setData] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(`${config.API_URL}/landing/slogan`);
+        const jsonData = await response.json();
+
+        setData(jsonData);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    fetchData();
+  }, []);
+
   return (
     <section
       style={{ backgroundImage: `url(${calculatorBg})` }}
@@ -8,13 +32,10 @@ const Slogan = () => {
     >
       <div className="container mx-auto px-3 py-20 xl:max-w-5xl 2xl:max-w-6xl">
         <p className="px-3 text-center text-sm leading-loose text-white lg:text-base lg:leading-8">
-          "Hak atas informasi yang terbuka menjadi pembuka jalan bagi
-          terjaminnya pelaksanaan hak-hak asasi lainnya, seperti hak atas
-          pendidikan, hak untuk hidup sejahtera, hak untuk hidup aman, dan hak
-          warga negara lainnya."
+          {loading ? <Skeleton count={3} /> : data.isi}
         </p>
         <p className="mx-auto mt-7 text-center text-xs text-white lg:text-sm">
-          Kominfo RI
+          {loading ? <Skeleton count className="w-32" /> : data.judul}
         </p>
       </div>
     </section>

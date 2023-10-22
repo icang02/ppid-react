@@ -1,64 +1,77 @@
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Navbar } from "../components/Navbar";
 import Footer1 from "../components/Footer1";
 import Footer2 from "../components/Footer2";
 import Hero from "../components/formulir/Hero";
 
-import bgHero from "../assets/img/detail-berita.jpg";
-import imgBerita from "../assets/img/berita.jpg";
+import config from "../config";
 
-import {
-  IoChevronForwardOutline,
-  IoPersonSharp,
-  IoTodaySharp,
-} from "react-icons/io5";
+import bgHero from "../assets/img/detail-berita.jpg";
+
+import { IoChevronForwardOutline, IoTodaySharp } from "react-icons/io5";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import DOMPurify from "dompurify";
+import Skeleton from "react-loading-skeleton";
 
 const Berita = () => {
   const [berita, setBerita] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const navigate = useNavigate();
+  const currentPath = useLocation().pathname;
+  const isInfoPublik = currentPath.includes("informasi-publik/serta-merta");
+
+  console.log(isInfoPublik);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setLoading(true);
 
-    axios
-      .get("https://jsonplaceholder.typicode.com/posts")
-      .then((res) => {
-        const filteredData = res.data.filter((item) => item.id < 14);
-        setBerita(filteredData);
-      })
-      .catch((err) => {
-        console.error("Error fetching data:", err);
-      });
-  }, []);
+    async function fetchData() {
+      try {
+        const response = await fetch(`${config.API_URL + currentPath}`);
+        const jsonData = await response.json();
 
-  let { slug } = useParams();
+        setBerita(jsonData);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
 
-  const currentPath = useLocation();
+    fetchData();
+  }, [currentPath]);
+
   const data = {
     bgHero,
-    titleMenu: "Berita & Informasi",
+    titleMenu: isInfoPublik ? "Informasi Serta Merta" : "Berita & Informasi",
     path: currentPath,
   };
   const breadcrumb = (
     <>
       <Link
-        to="/berita"
+        to={currentPath}
         className="text-acsent"
         onClick={() => window.scrollTo(0, 0)}
       >
-        Berita & Informasi
+        {isInfoPublik ? "Informasi Serta Merta" : "Berita & Informasi"}
       </Link>
     </>
   );
 
-  function TruncateText({ text, maxLength }) {
-    if (text.length <= maxLength) {
-      return <span>{text}</span>;
-    } else {
-      const truncatedText = text.slice(0, maxLength) + "...";
-      return <span title={text}>{truncatedText}</span>;
+  function sanitizeHtml(html) {
+    const config = {
+      ALLOWED_TAGS: [""],
+    };
+
+    return DOMPurify.sanitize(html, config);
+  }
+
+  function limitText(text, maxLength) {
+    if (text.length > maxLength) {
+      return text.slice(0, maxLength) + "...";
     }
+    return text;
   }
 
   return (
@@ -75,47 +88,78 @@ const Berita = () => {
         <hr className="mb-5 mt-1" />
 
         <div className="grid grid-cols-1 gap-7">
-          {berita.map((item, i) => (
-            <div className="col-span-1" key={i}>
-              <div className="grid grid-cols-12 rounded-lg shadow-lg">
-                <div className="col-span-12 border lg:col-span-4">
-                  <Link
-                    to="/berita/judul-slug-berita"
-                    className="block cursor-pointer overflow-hidden rounded-t-lg lg:rounded-l-lg lg:rounded-tr-none"
-                  >
-                    <img
-                      src={imgBerita}
-                      alt="image"
-                      className="aspect-[16/10] object-cover object-center transition-all duration-500 hover:scale-110 hover:brightness-[.65] lg:aspect-[4/3]"
-                    />
-                  </Link>
-                </div>
+          {loading
+            ? Array(6)
+                .fill(0)
+                .map((item, i) => (
+                  <div className="pointer-events-none col-span-1" key={i}>
+                    <div className="grid grid-cols-12 rounded-lg shadow-lg">
+                      <div className="col-span-12 border lg:col-span-4">
+                        <div className="block overflow-hidden rounded-t-lg lg:rounded-l-lg lg:rounded-tr-none">
+                          <Skeleton className="aspect-[16/10] object-cover object-center transition-all duration-500 lg:aspect-[4/3]" />
+                        </div>
+                      </div>
 
-                <div className="col-span-12 border lg:col-span-8 lg:flex lg:items-center lg:rounded-tr-lg lg:px-12">
-                  <div className="mt-5 px-5 pb-5 lg:m-0 lg:w-full lg:p-0">
-                    <Link
-                      to="/berita/judul-slug-berita"
-                      className="block font-bold leading-5 hover:underline lg:text-xl"
-                    >
-                      <TruncateText text={item.title} maxLength={100} />
-                    </Link>
-                    <div className="mt-2 flex items-center gap-1 text-xs text-[#6C757D] lg:text-sm">
-                      <IoTodaySharp /> 2023-09-22
+                      <div className="col-span-12 border lg:col-span-8 lg:flex lg:items-center lg:rounded-tr-lg lg:px-12">
+                        <div className="mt-5 px-5 pb-5 lg:m-0 lg:w-full lg:p-0">
+                          <div className="block font-bold leading-5 hover:underline lg:text-xl">
+                            <Skeleton count={2} />
+                          </div>
+                          <div className="mt-2 flex items-center gap-1 text-xs text-[#6C757D] lg:text-sm">
+                            <Skeleton className="w-24" />
+                          </div>
+                          <p className="mt-3 text-sm text-other lg:mt-5 lg:text-base">
+                            <Skeleton count={2} />
+                          </p>
+                          <div className="taxt-base mt-5 hidden italic text-blue-500 lg:block">
+                            <Skeleton className="w-28" />
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <p className="mt-3 text-sm text-other lg:mt-5 lg:text-base">
-                      <TruncateText text={item.body} maxLength={100} />
-                    </p>
-                    <Link
-                      to="/berita/slug"
-                      className="taxt-base mt-5 hidden italic text-blue-500 lg:block"
-                    >
-                      Selengkapnya..
-                    </Link>
+                  </div>
+                ))
+            : berita.map((item, i) => (
+                <div className="col-span-1" key={i}>
+                  <div className="grid grid-cols-12 rounded-lg shadow-lg">
+                    <div className="col-span-12 border lg:col-span-4">
+                      <div className="block cursor-pointer overflow-hidden rounded-t-lg lg:rounded-l-lg lg:rounded-tr-none">
+                        <img
+                          onClick={() => navigate(`/berita/${item.slug}`)}
+                          src={`${config.APP_URL}/${
+                            item.gambar ?? "img/berita.jpg"
+                          }`}
+                          alt="image"
+                          className="aspect-[16/10] object-cover object-center transition-all duration-500 hover:scale-110 hover:brightness-[.65] lg:aspect-[4/3]"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="col-span-12 border lg:col-span-8 lg:flex lg:items-center lg:rounded-tr-lg lg:px-12">
+                      <div className="mt-5 px-5 pb-5 lg:m-0 lg:w-full lg:p-0">
+                        <div
+                          onClick={() => navigate(`/berita/${item.slug}`)}
+                          className="block cursor-pointer font-bold leading-5 hover:underline lg:text-xl"
+                        >
+                          {limitText(item.judul, 100)}
+                        </div>
+                        <div className="mt-2 flex items-center gap-1 text-xs text-[#6C757D] lg:text-sm">
+                          <IoTodaySharp /> 2023-09-22
+                        </div>
+                        <p className="mt-3 text-sm text-other lg:mt-5 lg:text-base">
+                          {limitText(sanitizeHtml(item.isi), 100)}
+                        </p>
+                        <div
+                          onClick={() => navigate(`/berita/${item.slug}`)}
+                          className="taxt-base mt-5 hidden cursor-pointer italic text-blue-500 lg:block"
+                        >
+                          Selengkapnya..
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          ))}
+              ))}
         </div>
       </div>
 

@@ -1,5 +1,5 @@
 import { IoChevronForwardOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import img from "../../assets/img/berita.jpg";
 import CardNews from "../CardNews";
 import CardInfoPublik from "../CardInfoPublik";
@@ -9,23 +9,51 @@ import sengketa from "../../assets/img/Penyelesaian Sengketa.jpg";
 import permohonan from "../../assets/img/permohonan.jpg";
 import keberatan from "../../assets/img/keberatan.jpg";
 
-const Content = ({ data, breadcrumb }) => {
+import config from "../../config";
+import { useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
+
+const Content = ({ breadcrumb }) => {
   let imgSamping = "";
-  if (data.path == "/regulasi") {
+  let currentPath = useLocation().pathname;
+
+  if (currentPath == "/regulasi") {
     imgSamping = regulasi;
-  } else if (data.path.includes("permohonan")) {
+  } else if (currentPath.includes("permohonan")) {
     imgSamping = permohonan;
-  } else if (data.path.includes("keberatan")) {
+  } else if (currentPath.includes("keberatan")) {
     imgSamping = keberatan;
-  } else if (data.path.includes("sengketa")) {
+  } else if (currentPath.includes("sengketa")) {
     imgSamping = sengketa;
   }
 
   const checkPage =
-    data.path.includes("regulasi") ||
-    data.path.includes("permohonan") ||
-    data.path.includes("keberatan") ||
-    data.path.includes("sengketa");
+    currentPath.includes("regulasi") ||
+    currentPath.includes("permohonan") ||
+    currentPath.includes("keberatan") ||
+    currentPath.includes("sengketa");
+
+  const [data, setData] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+    setLoading(true);
+    async function fetchData() {
+      try {
+        const response = await fetch(`${config.API_URL + currentPath}`);
+        const jsonData = await response.json();
+
+        setData(jsonData);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    fetchData();
+  }, [currentPath]);
 
   return (
     <div className="container mx-auto px-3 py-10 xl:max-w-5xl 2xl:max-w-6xl">
@@ -41,41 +69,62 @@ const Content = ({ data, breadcrumb }) => {
           className={`${checkPage && "lg:order-2"} col-span-12 lg:col-span-7`}
         >
           <h2 className="mb-5 text-2xl font-extrabold leading-7 text-biru-uho">
-            {data.title}
+            {loading ? (
+              <>
+                <Skeleton count={1} />
+                <Skeleton count={1} className="w-2/3" />
+              </>
+            ) : (
+              data.judul
+            )}
           </h2>
 
           {/* INI STRUKTUR PPID */}
-          {data.path == "/struktur-ppid" ? (
+          {currentPath == "/struktur-ppid" ? (
             <div>
-              <div
-                className="isi text-sm text-other"
-                dangerouslySetInnerHTML={{ __html: data.content }}
-              ></div>
-              <img src={img} className="mt-4 w-full" />
+              {loading ? (
+                <>
+                  <Skeleton count={5} />
+                  <Skeleton className="mt-4 aspect-video w-full" />
+                </>
+              ) : (
+                <>
+                  <div
+                    className="isi text-sm text-other"
+                    dangerouslySetInnerHTML={{ __html: data.isi }}
+                  ></div>
+                  <img src={img} className="mt-4 w-full" />
+                </>
+              )}
             </div>
+          ) : // INI TENTANG PROFIL DAN LAIN LAIN
+          loading ? (
+            <Skeleton count={5} />
           ) : (
-            // INI TENTANG PROFIL DAN LAIN LAIN
             <div
               className="isi text-sm text-other"
-              dangerouslySetInnerHTML={{ __html: data.content }}
+              dangerouslySetInnerHTML={{ __html: data.isi }}
             ></div>
           )}
 
           {/* INI KHUSUS UNTUK INFORMASI PUBLIK */}
-          {(data.path === "/informasi-publik/berkala" ||
-            data.path === "/informasi-publik/setiap-saat") && (
-            <CardInfoPublik path={data.path} />
+          {(currentPath === "/informasi-publik/berkala" ||
+            currentPath === "/informasi-publik/setiap-saat") && (
+            <CardInfoPublik path={currentPath} />
           )}
 
           {/* INI KHUSUS UNTUK FORMULIR */}
-          {data.path.includes("formulir") && (
-            <Link
-              href="/formulir"
-              className="mt-7 inline-block rounded bg-biru-uho px-4 py-3 text-xs text-white"
-            >
-              LINK FORMULIR
-            </Link>
-          )}
+          {currentPath.includes("formulir") &&
+            (loading ? (
+              <Skeleton className="mt-7 inline-block w-[124.66px] rounded px-4 py-3 text-xs text-white" />
+            ) : (
+              <Link
+                href="/formulir"
+                className="mt-7 inline-block rounded bg-biru-uho px-4 py-3 text-xs text-white"
+              >
+                LINK FORMULIR
+              </Link>
+            ))}
         </div>
 
         {/* INI GARIS */}
@@ -91,18 +140,22 @@ const Content = ({ data, breadcrumb }) => {
         >
           <div className="flex flex-col">
             {checkPage && (
-              <div className="mb-8 w-full">
-                <img
-                  src={imgSamping}
-                  alt="image"
-                  className="aspect-[4/3]  object-cover object-center shadow"
-                />
+              <div className="mb-8 hidden w-full lg:block">
+                {loading ? (
+                  <Skeleton className="aspect-[4/3] w-[393.33px] shadow 2xl:w-[446.48px]" />
+                ) : (
+                  <img
+                    src={imgSamping}
+                    alt="image"
+                    className="aspect-[4/3] object-cover object-center shadow"
+                  />
+                )}
               </div>
             )}
 
             <div className="self-center">
-              {!data.path.includes("formulir") &&
-                !data.path.includes("regulasi") && <CardNews />}
+              {!currentPath.includes("formulir") &&
+                !currentPath.includes("regulasi") && <CardNews />}
             </div>
           </div>
         </div>

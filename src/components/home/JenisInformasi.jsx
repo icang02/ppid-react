@@ -1,40 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import img1 from "../../assets/img/informasi berkala.png";
-import img2 from "../../assets/img/informasi sedia tiap saat.png";
-import img3 from "../../assets/img/informasi serta merta.png";
+import Skeleton from "react-loading-skeleton";
+
+import config from "../../config";
 
 const JenisInformasi = () => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [activeElement, setActiveElement] = useState("Informasi Berkala");
 
   const handleElementClick = (elementId) => {
     setActiveElement(elementId);
   };
 
-  const data = [
-    {
-      title: "Informasi Berkala",
-      content:
-        "Informasi Berkala merupakan informasi yang diperbarui kemudian disediakan dan diumumkan kepada publik secara rutin atau berkala sekurang-kurangnya setiap 6 bulan sekali.",
-      img: img1,
-      path: "/informasi-publik/berkala",
-    },
-    {
-      title: "Informasi Tersedia Setiap Saat",
-      content:
-        "Informasi Tersedia Setiap Saat adalah informasi yang siap tersedia untuk bisa langsung diberikan kepada Pemohon Informasi Publik ketika terdapat permohonan mengajukan permohonan atas Informasi Publik tersebut.",
-      img: img2,
-      path: "/informasi-publik/setiap-saat",
-    },
-    {
-      title: "Informasi Serta Merta",
-      content:
-        "Informasi Serta Merta adalah informasi berkaitan dengan hajat hidup orang banyak dan ketertiban umum, serta wajib diumumkan secara serta merta tanpa penundaan.",
-      img: img3,
-      path: "/informasi-publik/serta-merta",
-    },
-  ];
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(
+          `${config.API_URL}/landing/jenis-informasi`,
+        );
+        const jsonData = await response.json();
+
+        setData(jsonData);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    fetchData();
+  }, []);
 
   return (
     <section id="jenisInformasi">
@@ -47,51 +43,87 @@ const JenisInformasi = () => {
         </h2>
 
         <div className="mt-5 flex flex-col items-center justify-center gap-2 lg:mt-10 lg:flex-row">
-          {data.map((item, i) => (
-            <div
-              key={i}
-              onClick={() => handleElementClick(item.title)}
-              className={`${
-                activeElement === item.title && "text-acsent"
-              } cursor-pointer rounded px-7 py-3 text-sm font-semibold shadow-md lg:text-base`}
-            >
-              {item.title}
-            </div>
-          ))}
+          {loading
+            ? Array(3)
+                .fill(0)
+                .map((item, i) => (
+                  <div
+                    key={i}
+                    className={`rounded px-7 py-3 text-sm font-semibold shadow-md lg:text-base`}
+                  >
+                    <Skeleton className="w-40" />
+                  </div>
+                ))
+            : data.map((item, i) => (
+                <div
+                  key={i}
+                  onClick={() => handleElementClick(item.judul)}
+                  className={`${
+                    activeElement === item.judul && "text-acsent"
+                  } cursor-pointer rounded px-7 py-3 text-center text-sm font-semibold shadow-md lg:text-base`}
+                >
+                  {item.judul}
+                </div>
+              ))}
         </div>
 
-        {data.map((item, i) => (
-          <div key={i}>
-            {activeElement === item.title && (
-              <div className="mt-10 grid grid-cols-12 rounded-lg text-center shadow-lg lg:mx-auto lg:max-w-6xl xl:text-left">
-                <div className="col-span=12 hidden h-72 lg:col-span-4 xl:block">
-                  <img
-                    src={item.img}
-                    alt="image"
-                    className="h-full w-96 rounded-l-lg border border-r object-cover object-center"
-                  />
-                </div>
+        {loading ? (
+          <div className="mt-10 grid grid-cols-12 rounded-lg text-center shadow-lg lg:mx-auto lg:max-w-6xl xl:text-left">
+            <div className="col-span=12 hidden h-72 lg:col-span-4 xl:block">
+              <Skeleton className="h-full w-full rounded-l-lg border border-r object-cover object-center" />
+            </div>
 
-                <div className="col-span-12 flex items-center border px-8 py-10 lg:col-span-8 lg:px-20">
-                  <div className="">
-                    <h5 className="mb-5 text-xl font-bold lg:mb-7 lg:text-2xl">
-                      {item.title}
-                    </h5>
-                    <p className="mb-5 text-sm text-other lg:mb-7 lg:text-base">
-                      {item.content}
-                    </p>
-                    <Link
-                      to={item.path}
-                      className="text-sm font-medium italic text-blue-600 lg:text-base"
-                    >
-                      Selengkapnya..
-                    </Link>
+            <div className="col-span-12 flex items-center border px-8 py-10 lg:col-span-8 lg:px-20">
+              <div className="mx-auto xl:m-0">
+                <h5 className="mb-5 text-xl font-bold lg:mb-7 lg:text-2xl">
+                  <Skeleton className="w-48 lg:w-72" />
+                </h5>
+                <p className="mb-5 text-sm text-other lg:mb-7 lg:text-base">
+                  <Skeleton
+                    className="w-72 lg:w-[455px] xl:w-[580px]"
+                    count={3}
+                  />
+                </p>
+                <Link className="text-sm font-medium italic text-blue-600 lg:text-base">
+                  <Skeleton className="w-32" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        ) : (
+          data.map((item, i) => (
+            <div key={i}>
+              {activeElement === item.judul && (
+                <div className="mt-10 grid grid-cols-12 rounded-lg text-center shadow-lg lg:mx-auto lg:max-w-6xl xl:text-left">
+                  <div className="col-span=12 hidden h-72 lg:col-span-4 xl:block">
+                    <img
+                      src={`http://127.0.0.1:8000/${item.gambar}`}
+                      alt={item.gambar}
+                      className="h-full w-96 rounded-l-lg border border-r object-cover object-center"
+                    />
+                  </div>
+
+                  <div className="col-span-12 flex items-center border px-8 py-10 lg:col-span-8 lg:px-20">
+                    <div className="">
+                      <h5 className="mb-5 text-xl font-bold lg:mb-7 lg:text-2xl">
+                        {item.judul}
+                      </h5>
+                      <p className="mb-5 text-sm text-other lg:mb-7 lg:text-base">
+                        {item.isi}
+                      </p>
+                      <Link
+                        to={item.link}
+                        className="text-sm font-medium italic text-blue-600 lg:text-base"
+                      >
+                        Selengkapnya..
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
-          </div>
-        ))}
+              )}
+            </div>
+          ))
+        )}
       </div>
     </section>
   );

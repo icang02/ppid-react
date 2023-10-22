@@ -3,12 +3,14 @@ import logo from "../assets/img/ppid.png";
 import { IoMenuOutline } from "react-icons/io5";
 import { IoCloseOutline } from "react-icons/io5";
 import { IoChevronDown } from "react-icons/io5";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
 import LoadingBar from "react-top-loading-bar";
 
 export const Navbar = () => {
   const [progress, setProgress] = useState(100);
+
+  const path = useLocation().pathname;
 
   const [menuClick, setMenuClick] = useState(false);
   const [listMenuClick, setListMenuClick] = useState(false);
@@ -76,6 +78,10 @@ export const Navbar = () => {
       nama: "Informasi Serta Merta",
       path: "/informasi-publik/serta-merta",
     },
+    {
+      nama: "Informasi Dikecualikan",
+      path: "/informasi-publik/dikecualikan",
+    },
   ];
 
   const formulir = [
@@ -131,15 +137,24 @@ export const Navbar = () => {
             <NavLink
               onClick={handleScrollToTop}
               to="/"
-              className="active inline-block py-3.5 tracking-widest transition-all duration-500 hover:text-acsent"
+              className={`${
+                path == "/" && "active"
+              } inline-block py-3.5 tracking-widest transition-all duration-500 hover:text-acsent`}
             >
               Beranda
             </NavLink>
 
-            <div className="group">
-              <NavLink className="flex items-center gap-0.5 py-3.5 tracking-widest transition-all duration-500 group-hover:text-acsent">
+            <NavLink
+              to={"javascript:void(0)"}
+              className={`${
+                ["profil", "visi", "tugas", "struktur"].some((key) =>
+                  path.includes(key),
+                ) && "active"
+              } group`}
+            >
+              <div className="flex items-center gap-0.5 py-3.5 tracking-widest transition-all duration-500 group-hover:text-acsent">
                 Tentang <IoChevronDown />
-              </NavLink>
+              </div>
 
               <div className="pointer-events-none absolute translate-y-4 text-other opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                 <ul className="pointer-events-auto overflow-hidden rounded-lg bg-white text-xs text-black">
@@ -157,12 +172,19 @@ export const Navbar = () => {
                   ))}
                 </ul>
               </div>
-            </div>
+            </NavLink>
 
-            <div className="group">
-              <NavLink className="flex items-center gap-0.5 py-3.5 tracking-widest transition-all duration-500 group-hover:text-acsent">
+            <NavLink
+              to={"javascript:void(0)"}
+              className={`${
+                ["berkala", "serta", "saat", "dikecualikan"].some((key) =>
+                  path.includes(key),
+                ) && "active"
+              } group`}
+            >
+              <div className="flex items-center gap-0.5 py-3.5 tracking-widest transition-all duration-500 group-hover:text-acsent">
                 Informasi Publik <IoChevronDown />
-              </NavLink>
+              </div>
 
               <div className="pointer-events-none absolute translate-y-4 text-other opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                 <ul className="pointer-events-auto overflow-hidden rounded-lg bg-white text-xs text-black">
@@ -181,12 +203,19 @@ export const Navbar = () => {
                   ))}
                 </ul>
               </div>
-            </div>
+            </NavLink>
 
-            <div className="group">
-              <NavLink className="flex items-center gap-0.5 py-3.5 tracking-widest transition-all duration-500 group-hover:text-acsent">
+            <NavLink
+              to={"javascript:void(0)"}
+              className={`${
+                ["permohonan", "keberatan", "sengketa"].some((key) =>
+                  path.includes(key),
+                ) && "active"
+              } group`}
+            >
+              <div className="flex items-center gap-0.5 py-3.5 tracking-widest transition-all duration-500 group-hover:text-acsent">
                 Laporan <IoChevronDown />
-              </NavLink>
+              </div>
 
               <div className="pointer-events-none absolute translate-y-4 text-other opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                 <ul className="pointer-events-auto overflow-hidden rounded-lg bg-white text-xs text-black">
@@ -204,12 +233,18 @@ export const Navbar = () => {
                   ))}
                 </ul>
               </div>
-            </div>
+            </NavLink>
 
-            <div className="group">
-              <NavLink className="flex items-center gap-0.5 py-3.5 tracking-widest transition-all duration-500 group-hover:text-acsent">
+            <NavLink
+              to={"javascript:void(0)"}
+              className={`${
+                ["akses", "survei"].some((key) => path.includes(key)) &&
+                "active"
+              } group`}
+            >
+              <div className="flex items-center gap-0.5 py-3.5 tracking-widest transition-all duration-500 group-hover:text-acsent">
                 Formulir <IoChevronDown />
-              </NavLink>
+              </div>
 
               <div className="pointer-events-none absolute translate-y-4 text-other opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                 <ul className="pointer-events-auto overflow-hidden rounded-lg bg-white text-xs text-black">
@@ -228,7 +263,7 @@ export const Navbar = () => {
                   ))}
                 </ul>
               </div>
-            </div>
+            </NavLink>
 
             <NavLink
               onClick={handleScrollToTop}

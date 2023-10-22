@@ -1,6 +1,29 @@
+import { useEffect, useState } from "react";
 import heroImg from "../../assets/img/home-img.png";
+import config from "../../config";
 
 const Hero = () => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+    async function fetchData() {
+      try {
+        const response = await fetch(`${config.API_URL}/landing/ppid`);
+        const jsonData = await response.json();
+
+        setData(jsonData);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    fetchData();
+  }, []);
+
   return (
     <section
       style={{ backgroundImage: `url(${heroImg})` }}
@@ -16,9 +39,15 @@ const Hero = () => {
           <div className="mx-auto my-10 mt-7 h-1.5 w-20 rounded-lg bg-white lg:mx-0 lg:mt-9"></div>
 
           <p className="hidden max-w-2xl text-base lg:block">
-            PPID merupakan saranan layanan bagi permohonan informasi publik dan
-            sebagai salah satu wujud pelaksanaan keterbukaan informasi di
-            Universitas Halu Oleo.
+            {loading ? (
+              <div class="loading-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+            ) : (
+              data.isi
+            )}
           </p>
 
           <a
