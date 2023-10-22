@@ -40,10 +40,10 @@ const Hero = () => {
 
           <p className="hidden max-w-2xl text-base lg:block">
             {loading ? (
-              <div class="loading-dots">
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
+              <div className="loading-dots">
+                <div className="dot"></div>
+                <div className="dot"></div>
+                <div className="dot"></div>
               </div>
             ) : (
               data.isi

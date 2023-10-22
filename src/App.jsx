@@ -12,6 +12,8 @@ import Blank from "./pages/Blank";
 
 import { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import Laporan from "./pages/Laporan";
+import LaporanImg from "./pages/LaporanImg";
 
 function App() {
   return (
@@ -54,7 +56,17 @@ function App() {
             />
 
             <Route path="/berita" element={<Berita />} />
+            <Route path="/berita/search/:keyword" element={<Berita />} />
             <Route path="/berita/:slug" element={<DetailBerita />} />
+
+            <Route
+              path="/laporan/akses-informasi-publik"
+              element={<LaporanImg />}
+            />
+            <Route
+              path="/laporan/layanan-informasi-publik"
+              element={<Laporan />}
+            />
 
             {/* Handle untuk halaman admin */}
             <Route path="/admin" element={<Blank />} />

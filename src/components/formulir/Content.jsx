@@ -1,5 +1,5 @@
 import { IoChevronForwardOutline } from "react-icons/io5";
-import { Link, useLocation } from "react-router-dom";
+import { Link, json, useLocation } from "react-router-dom";
 import img from "../../assets/img/berita.jpg";
 import CardNews from "../CardNews";
 import CardInfoPublik from "../CardInfoPublik";
@@ -47,6 +47,8 @@ const Content = ({ breadcrumb }) => {
 
         setData(jsonData);
         setLoading(false);
+
+        // console.log(jsonData);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -114,17 +116,21 @@ const Content = ({ breadcrumb }) => {
           )}
 
           {/* INI KHUSUS UNTUK FORMULIR */}
-          {currentPath.includes("formulir") &&
-            (loading ? (
+          {currentPath.includes("formulir") ? (
+            loading ? (
               <Skeleton className="mt-7 inline-block w-[124.66px] rounded px-4 py-3 text-xs text-white" />
             ) : (
-              <Link
-                href="/formulir"
-                className="mt-7 inline-block rounded bg-biru-uho px-4 py-3 text-xs text-white"
+              <div
+                onClick={() => window.open(data.link, "_blank")}
+                target="_blank"
+                className="mt-7 inline-block cursor-pointer rounded bg-biru-uho px-4 py-3 text-xs text-white"
               >
                 LINK FORMULIR
-              </Link>
-            ))}
+              </div>
+            )
+          ) : (
+            ""
+          )}
         </div>
 
         {/* INI GARIS */}

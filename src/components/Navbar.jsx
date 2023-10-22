@@ -6,6 +6,7 @@ import { IoChevronDown } from "react-icons/io5";
 import { Link, NavLink, useLocation } from "react-router-dom";
 
 import LoadingBar from "react-top-loading-bar";
+import InputSearch from "./search/inputSearch";
 
 export const Navbar = () => {
   const [progress, setProgress] = useState(100);
@@ -102,11 +103,11 @@ export const Navbar = () => {
   const laporan = [
     {
       nama: "Laporan Akses Informasi Publik",
-      path: "/informasi-publik/informasi-berkala",
+      path: "/laporan/akses-informasi-publik",
     },
     {
-      nama: "Laporan Survei Informasi Publik",
-      path: "/informasi-publik/setiap-saat",
+      nama: "Laporan Layanan Informasi Publik",
+      path: "/laporan/layanan-informasi-publik",
     },
   ];
 
@@ -133,7 +134,7 @@ export const Navbar = () => {
 
         {/* DESKTOP NAVBAR */}
         <ul className="hidden text-sm text-white xl:block">
-          <div className="flex gap-8">
+          <div className="flex items-center gap-8">
             <NavLink
               onClick={handleScrollToTop}
               to="/"
@@ -208,9 +209,7 @@ export const Navbar = () => {
             <NavLink
               to={"javascript:void(0)"}
               className={`${
-                ["permohonan", "keberatan", "sengketa"].some((key) =>
-                  path.includes(key),
-                ) && "active"
+                ["laporan/"].some((key) => path.includes(key)) && "active"
               } group`}
             >
               <div className="flex items-center gap-0.5 py-3.5 tracking-widest transition-all duration-500 group-hover:text-acsent">
@@ -238,8 +237,7 @@ export const Navbar = () => {
             <NavLink
               to={"javascript:void(0)"}
               className={`${
-                ["akses", "survei"].some((key) => path.includes(key)) &&
-                "active"
+                ["formulir/"].some((key) => path.includes(key)) && "active"
               } group`}
             >
               <div className="flex items-center gap-0.5 py-3.5 tracking-widest transition-all duration-500 group-hover:text-acsent">
@@ -272,6 +270,9 @@ export const Navbar = () => {
             >
               Regulasi
             </NavLink>
+
+            {/* SEARCH INPUT */}
+            <InputSearch />
           </div>
         </ul>
 
@@ -454,13 +455,17 @@ export const Navbar = () => {
         </ul>
 
         {/* HAMBURGER MENU ICON */}
-        <div
-          className={`${
-            isSticky ? "text-3xl" : "text-4xl"
-          } cursor-pointer pr-2 text-white transition-all duration-300 xl:hidden`}
-          onClick={() => setMenuClick(!menuClick)}
-        >
-          {menuClick ? <IoCloseOutline /> : <IoMenuOutline />}
+        {/* SEARCH INPUT */}
+        <div className="flex items-center gap-3 xl:hidden">
+          <InputSearch />
+          <div
+            className={`${
+              isSticky ? "text-3xl" : "text-4xl"
+            } cursor-pointer pr-2 text-white transition-all duration-300`}
+            onClick={() => setMenuClick(!menuClick)}
+          >
+            {menuClick ? <IoCloseOutline /> : <IoMenuOutline />}
+          </div>
         </div>
       </div>
     </nav>

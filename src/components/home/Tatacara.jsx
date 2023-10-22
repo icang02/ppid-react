@@ -56,7 +56,7 @@ const Tatacara = () => {
                   key={i}
                 >
                   <img
-                    src={`http://127.0.0.1:8000/${item.gambar}`}
+                    src={`http://127.0.0.1:8000/storage/${item.gambar}`}
                     alt="image"
                     className="w-full cursor-pointer border-[5px] border-white duration-300 hover:brightness-50"
                   />

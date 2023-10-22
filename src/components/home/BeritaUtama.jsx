@@ -1,15 +1,18 @@
 import { IoArrowForward, IoTodaySharp } from "react-icons/io5";
 
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import DOMPurify from "dompurify";
 import Skeleton from "react-loading-skeleton";
 
 import config from "../../config";
+import { format } from "date-fns";
+import idLocale from "date-fns/locale/id";
 
 const BeritaUtama = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   function sanitizeHtml(html) {
     const config = {
@@ -91,8 +94,8 @@ const BeritaUtama = () => {
               : data.map((item, i) => (
                   <div className="col-span-12 lg:col-span-4" key={i}>
                     <div className="rounded-lg shadow-lg">
-                      <Link
-                        to="/berita/judul-slug-berita"
+                      <div
+                        onClick={() => navigate(`/berita/${item.slug}`)}
                         className="block cursor-pointer overflow-hidden rounded-t-lg"
                       >
                         <img
@@ -102,16 +105,19 @@ const BeritaUtama = () => {
                           alt="image"
                           className="aspect-[16/10] object-cover object-center transition-all duration-500 hover:scale-110 hover:brightness-[.65]"
                         />
-                      </Link>
+                      </div>
                       <div className="mt-5 px-5 pb-5">
-                        <Link
-                          to={`/berita/${item.slug}`}
-                          className="block font-bold leading-5 hover:underline lg:text-lg lg:leading-6"
+                        <div
+                          onClick={() => navigate(`/berita/${item.slug}`)}
+                          className="block cursor-pointer font-bold leading-5 hover:underline lg:text-lg lg:leading-6"
                         >
                           {limitText(item.judul, 100)}
-                        </Link>
+                        </div>
                         <div className="mt-2 flex items-center gap-1 text-xs text-[#6C757D] lg:text-sm">
-                          <IoTodaySharp /> {item.tanggal}
+                          <IoTodaySharp />
+                          {format(new Date(item.tanggal), "dd MMMM yyyy", {
+                            locale: idLocale,
+                          })}
                         </div>
                         <p className="mt-3 text-sm text-other lg:text-base lg:leading-5">
                           {limitText(sanitizeHtml(item.isi), 100)}

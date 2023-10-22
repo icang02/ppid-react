@@ -1,3 +1,6 @@
+import { format } from "date-fns";
+import idLocale from "date-fns/locale/id";
+
 import { IoTodaySharp } from "react-icons/io5";
 
 import { useEffect, useState } from "react";
@@ -36,7 +39,11 @@ const CardNews = () => {
   }
 
   return (
-    <div className="my-10 max-w-sm rounded-lg border shadow-lg lg:my-0">
+    <div
+      className={`${
+        currentPath.includes("berita") ? "w-full" : "max-w-sm"
+      } my-10 rounded-lg border shadow-lg lg:my-0`}
+    >
       <div className="border-b-[3px] border-black bg-[#EDEDED] px-4 py-4 font-medium">
         Berita & Informasi Terbaru
       </div>
@@ -83,7 +90,10 @@ const CardNews = () => {
                       {limitText(item.judul, 100)}
                     </Link>
                     <div className="flex items-center gap-1 text-xs text-[#6C757D]">
-                      <IoTodaySharp /> {item.tanggal}
+                      <IoTodaySharp />{" "}
+                      {format(new Date(item.tanggal), "dd MMMM yyyy", {
+                        locale: idLocale,
+                      })}
                     </div>
                   </div>
                 </div>

@@ -1,3 +1,6 @@
+import { format } from "date-fns";
+import idLocale from "date-fns/locale/id";
+
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { Navbar } from "../components/Navbar";
 import Footer1 from "../components/Footer1";
@@ -111,7 +114,10 @@ const DetailBerita = () => {
               ) : (
                 <>
                   <span className="flex items-center gap-1.5">
-                    <IoTodaySharp /> {berita.tanggal}
+                    <IoTodaySharp />{" "}
+                    {format(new Date(berita.tanggal), "dd MMMM yyyy", {
+                      locale: idLocale,
+                    })}
                   </span>
                   <span className="flex items-center gap-1.5">
                     <IoPersonSharp /> Oleh : {berita.penulis}

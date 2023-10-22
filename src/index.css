@@ -18,6 +18,13 @@
   color: #f4b700;
 }
 
+.isi a {
+  font-weight: 500;
+}
+.isi a:hover {
+  color: #e1a900;
+}
+
 .isi p:not(:first-child),
 .isi p:not(:last-child) {
   margin-bottom: 12px;
