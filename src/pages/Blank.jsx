@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 export default function Blank() {
-  const link = "http://ppid.uho.ac.id/auth/admin";
+  const link = "http://ppid.uho.ac.id/auth";
   useEffect(() => {
     window.location.href = link;
   });

@@ -7,7 +7,7 @@ export default function LoadCardAllNews({ count }) {
     .map((item, i) => (
       <div className="pointer-events-none col-span-1" key={i}>
         <div className="grid grid-cols-12 rounded-lg shadow-lg">
-          <div className="col-span-12 border lg:col-span-4">
+          <div className="lg:rounded-tr-0 col-span-12 rounded-lg border lg:col-span-4">
             <div className="block overflow-hidden rounded-t-lg lg:rounded-l-lg lg:rounded-tr-none">
               <Skeleton className="aspect-[16/10] object-cover object-center transition-all duration-500 lg:aspect-[4/3]" />
             </div>

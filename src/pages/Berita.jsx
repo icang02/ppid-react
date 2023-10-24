@@ -1,6 +1,5 @@
-import { Link, json, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { IoChevronForwardOutline } from "react-icons/io5";
 
 import config from "../config";
 

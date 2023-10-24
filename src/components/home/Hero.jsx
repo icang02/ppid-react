@@ -50,22 +50,27 @@ const Hero = () => {
             className="mx-auto my-10 mt-7 h-1.5 w-20 rounded-lg bg-white lg:mx-0 lg:mt-9"
           ></div>
 
-          <p
+          <div
             data-aos="fade-left"
             data-aos-delay="250"
             data-aos-duration="1000"
             className="hidden max-w-2xl text-base lg:block"
           >
             {loading ? (
-              <div className="loading-dots">
-                <div className="dot"></div>
-                <div className="dot"></div>
-                <div className="dot"></div>
+              <div className="flex items-center justify-start">
+                {Array(3)
+                  .fill(0)
+                  .map((item, i) => (
+                    <div
+                      key={i}
+                      className="animate-dot-animation mx-[5px] h-[10px] w-[10px] rounded-[50%] bg-white opacity-0"
+                    ></div>
+                  ))}
               </div>
             ) : (
               data.isi
             )}
-          </p>
+          </div>
 
           <a
             data-aos="fade-up"

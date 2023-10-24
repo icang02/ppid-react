@@ -76,23 +76,27 @@ export default function LaporanImg() {
         <div className="grid grid-cols-1 gap-7">
           <div className="col-span-1">
             <h2 className="mx-auto mb-12 max-w-md text-center text-2xl font-extrabold leading-7 text-biru-uho">
-              Laporan Akses Informasi Publik Tahun {tahun}
+              Laporan Akses Informasi Publik
             </h2>
 
             <div className="mx-auto flex max-w-3xl flex-wrap justify-center gap-8 lg:gap-12">
-              {loading
-                ? "Belum ada data gambar."
-                : data.laporan.data_gambar != 0
-                ? data.laporan.data_gambar.map((item, i) => (
-                    <img
-                      key={i}
-                      src={`${config.APP_URL}/${item.gambar}`}
-                      alt="image"
-                      className="cursor-pointer transition duration-500 hover:scale-[1.01]"
-                      data-fancybox
-                    />
-                  ))
-                : ""}
+              {loading ? (
+                <div className="text-center text-sm text-gray-500 lg:text-base">
+                  Belum ada data gambar.
+                </div>
+              ) : data.laporan.data_gambar != 0 ? (
+                data.laporan.data_gambar.map((item, i) => (
+                  <img
+                    key={i}
+                    src={`${config.APP_URL}/${item.gambar}`}
+                    alt="image"
+                    className="cursor-pointer transition duration-500 hover:scale-[1.01]"
+                    data-fancybox
+                  />
+                ))
+              ) : (
+                ""
+              )}
             </div>
 
             <div className="mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-2 lg:gap-3">
