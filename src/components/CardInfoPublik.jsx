@@ -62,14 +62,10 @@ const CardInfoPublik = ({ path }) => {
         : data.map((item, i) => (
             <div key={i}>
               <div
-                className="relative py-3 font-semibold"
+                className="relative cursor-pointer py-3 font-semibold"
                 onClick={() => toggleElement(i)}
               >
-                <h6
-                  className={`${
-                    activeIndex === i && "text-acsent"
-                  } w-[90%] cursor-pointer`}
-                >
+                <h6 className={`${activeIndex === i && "text-acsent"} w-[90%]`}>
                   {item.judul}
                 </h6>
                 <span

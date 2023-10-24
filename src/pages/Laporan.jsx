@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 
-import { Navbar } from "../components/Navbar";
-import Footer1 from "../components/Footer1";
-import Footer2 from "../components/Footer2";
 import Hero from "../components/formulir/Hero";
 
 import bgHero from "../assets/img/rektorat2.png";
-import cover from "../assets/img/cover-laporan.png";
-import { Link, useLocation } from "react-router-dom";
+import { Link, json, useLocation } from "react-router-dom";
 import { IoChevronForwardOutline, IoSearch } from "react-icons/io5";
 import Skeleton from "react-loading-skeleton";
+import Layout from "../components/Layout/Layout";
+import config from "../config";
 
 export default function Laporan() {
   const [data, setData] = useState([]);
@@ -19,18 +17,19 @@ export default function Laporan() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    // setLoading(true);
-    // async function fetchData() {
-    //   try {
-    //     const response = await fetch(`${config.API_URL + currentPath}`);
-    //     const jsonData = await response.json();
-    //     setData(jsonData);
-    //     setLoading(false);
-    //   } catch (error) {
-    //     console.error("Error fetching data:", error);
-    //   }
-    // }
-    // fetchData();
+
+    setLoading(true);
+    async function fetchData() {
+      try {
+        const response = await fetch(`${config.API_URL + currentPath}`);
+        const jsonData = await response.json();
+        setData(jsonData);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+    fetchData();
   }, []);
 
   const data1 = {
@@ -52,8 +51,7 @@ export default function Laporan() {
   );
 
   return (
-    <>
-      <Navbar />
+    <Layout>
       <Hero data={data1} />
 
       <div className="container mx-auto px-3 py-20 pt-10 xl:max-w-5xl 2xl:max-w-6xl">
@@ -70,23 +68,31 @@ export default function Laporan() {
               Laporan layanan Informasi Publik
             </h2>
             <div className="mx-auto flex max-w-3xl flex-wrap justify-center gap-8 gap-y-12 lg:gap-x-16">
-              {/* <div className="group cursor-pointer">
-                <div className="relative overflow-hidden border-4 border-white shadow-lg">
-                  <Skeleton
-                    className="h-[244.5px] w-52 transition-all duration-300 group-hover:brightness-50 lg:w-44"
-                    alt="image"
-                  />
-                </div>
+              {loading ? (
+                Array(3)
+                  .fill(0)
+                  .map((item, i) => (
+                    <div className="group cursor-pointer" key={i}>
+                      <div className="relative overflow-hidden border-4 border-white shadow-lg">
+                        <Skeleton
+                          className="h-[244.5px] w-52 lg:w-44"
+                          alt="image"
+                        />
+                      </div>
 
-                <Skeleton className="border-x-4 border-b-4 border-white px-3 py-1 text-center text-sm text-white shadow-lg" />
-              </div> */}
-              {Array(3)
-                .fill(0)
-                .map((item, i) => (
-                  <div className="group cursor-pointer">
+                      <Skeleton className="border-x-4 border-b-4 border-white px-3 py-1 text-center text-sm text-white shadow-lg" />
+                    </div>
+                  ))
+              ) : data.length != 0 ? (
+                data.map((item, i) => (
+                  <div
+                    onClick={() => window.open(item.link, "_blank")}
+                    className="group cursor-pointer"
+                    key={i}
+                  >
                     <div className="relative overflow-hidden border-4 border-white shadow-lg">
                       <img
-                        src={cover}
+                        src={`${config.APP_URL}/${item.gambar}`}
                         className="w-52 transition-all duration-300 group-hover:brightness-50 lg:w-44"
                         alt="image"
                       />
@@ -97,17 +103,19 @@ export default function Laporan() {
                     </div>
 
                     <div className="border-x-4 border-b-4 border-white bg-biru-uho px-3 py-1 text-center text-sm text-white shadow-lg">
-                      Laporan 2023
+                      Laporan {item.tahun}
                     </div>
                   </div>
-                ))}
+                ))
+              ) : (
+                <div className="text-center text-sm text-gray-500 lg:text-base">
+                  Belum ada data.
+                </div>
+              )}
             </div>
           </div>
         </div>
       </div>
-
-      <Footer1 />
-      <Footer2 />
-    </>
+    </Layout>
   );
 }

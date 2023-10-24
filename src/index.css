@@ -25,7 +25,7 @@
   color: #e1a900;
 }
 
-.isi p:not(:first-child),
+/* .isi p:not(:first-child),
 .isi p:not(:last-child) {
   margin-bottom: 12px;
 }
@@ -34,6 +34,13 @@
 }
 .isi p:last-child {
   margin-bottom: 0px;
+} */
+.isi p:not(:first-child) {
+  margin-top: 12px;
+  margin-bottom: 8px;
+}
+.isi p:first-child {
+  margin-bottom: 8px;
 }
 
 .isi ol {

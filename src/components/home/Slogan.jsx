@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 
 import config from "../../config";
+import Aos from "aos";
 
 const Slogan = () => {
   const [data, setData] = useState({});

@@ -9,11 +9,20 @@ import sengketa from "../../assets/img/Penyelesaian Sengketa.jpg";
 import permohonan from "../../assets/img/permohonan.jpg";
 import keberatan from "../../assets/img/keberatan.jpg";
 
+import Breadcrumb from "./Breadcrumb";
+
 import config from "../../config";
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 
+import { Fancybox } from "@fancyapps/ui";
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
+
 const Content = ({ breadcrumb }) => {
+  Fancybox.bind("[data-fancybox]", {
+    // Your custom options
+  });
+
   let imgSamping = "";
   let currentPath = useLocation().pathname;
 
@@ -59,12 +68,7 @@ const Content = ({ breadcrumb }) => {
 
   return (
     <div className="container mx-auto px-3 py-10 xl:max-w-5xl 2xl:max-w-6xl">
-      <div className="flex items-center gap-0.5 text-xs text-other lg:text-sm">
-        <Link to="/">Beranda</Link> <IoChevronForwardOutline />
-        {breadcrumb}
-      </div>
-
-      <hr className="mb-5 mt-1" />
+      <Breadcrumb data={breadcrumb} />
 
       <div className="grid grid-cols-12 lg:gap-10">
         <div
@@ -95,7 +99,11 @@ const Content = ({ breadcrumb }) => {
                     className="isi text-sm text-other"
                     dangerouslySetInnerHTML={{ __html: data.isi }}
                   ></div>
-                  <img src={img} className="mt-4 w-full" />
+                  <img
+                    data-fancybox
+                    src={`${config.APP_URL}/${data.gambar ?? "img/berita.jpg"}`}
+                    className="mt-4 w-full cursor-pointer transition duration-500 hover:scale-[1.01]"
+                  />
                 </>
               )}
             </div>

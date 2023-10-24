@@ -4,28 +4,28 @@ import idLocale from "date-fns/locale/id";
 import { IoTodaySharp } from "react-icons/io5";
 
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import config from "../config";
 
 const CardNews = () => {
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const currentPath = useLocation().pathname;
+
+  let { slug } = useParams();
 
   useEffect(() => {
     setLoading(true);
 
     async function fetchData() {
-      try {
-        const response = await fetch(`${config.API_URL}/card-news`);
-        const jsonData = await response.json();
+      const response = await fetch(`${config.API_URL}/card-news/not/${slug}`);
 
-        setData(jsonData.filter((item) => item));
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
+      const jsonData = await response.json();
+
+      setData(jsonData.filter((item) => item));
+      setLoading(false);
     }
 
     fetchData();
@@ -53,11 +53,8 @@ const CardNews = () => {
           ? Array(4)
               .fill(0)
               .map((item, i) => (
-                <>
-                  <div
-                    className="flex items-start gap-4 px-5 py-4 lg:px-6"
-                    key={i}
-                  >
+                <div key={i}>
+                  <div className="flex items-start gap-4 px-5 py-4 lg:px-6">
                     <Skeleton className="aspect-[4/3] w-24 rounded object-cover" />
                     <div>
                       <Link className="mb-1.5 inline-block text-sm font-bold leading-5 hover:underline">
@@ -69,18 +66,16 @@ const CardNews = () => {
                     </div>
                   </div>
                   {i < data.length - 1 && <hr />}
-                </>
+                </div>
               ))
           : data.map((item, i) => (
-              <>
-                <div
-                  className="flex items-start gap-4 px-5 py-4 lg:px-6"
-                  key={i}
-                >
+              <div key={i}>
+                <div className="flex items-start gap-4 px-5 py-4 lg:px-6">
                   <img
+                    onClick={() => navigate(`/berita/${item.slug}`)}
                     src={`${config.APP_URL}/${item.gambar ?? "img/berita.jpg"}`}
                     alt="image"
-                    className="aspect-[4/3] w-24 rounded object-cover"
+                    className="aspect-[4/3] w-24 cursor-pointer rounded object-cover"
                   />
                   <div>
                     <Link
@@ -98,7 +93,7 @@ const CardNews = () => {
                   </div>
                 </div>
                 {i < data.length - 1 && <hr />}
-              </>
+              </div>
             ))}
       </div>
     </div>

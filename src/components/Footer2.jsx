@@ -3,7 +3,8 @@ const Footer2 = () => {
     <footer className="bg-secondary">
       <div className="container mx-auto px-5 py-5">
         <p className="text-center text-xs font-light text-white opacity-70 lg:text-sm">
-          Copyright @ 2023. All Right Reserved. Universitas Halu Oleo
+          Copyright @ {new Date().getFullYear()}. All Right Reserved.
+          Universitas Halu Oleo
         </p>
       </div>
     </footer>

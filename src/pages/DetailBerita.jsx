@@ -2,11 +2,11 @@ import { format } from "date-fns";
 import idLocale from "date-fns/locale/id";
 
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-import { Navbar } from "../components/Navbar";
-import Footer1 from "../components/Footer1";
-import Footer2 from "../components/Footer2";
 import bgHero from "../assets/img/detail-berita.jpg";
 import Hero from "../components/formulir/Hero";
+
+import { Fancybox } from "@fancyapps/ui";
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
 import config from "../config";
 
@@ -18,8 +18,13 @@ import {
 import CardNews from "../components/CardNews";
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
+import Layout from "../components/Layout/Layout";
 
 const DetailBerita = () => {
+  Fancybox.bind("[data-fancybox]", {
+    // Your custom options
+  });
+
   const [berita, setBerita] = useState([]);
   const [loading, setLoading] = useState(true);
   const currentPath = useLocation();
@@ -31,18 +36,14 @@ const DetailBerita = () => {
     setLoading(true);
 
     async function fetchData() {
-      try {
-        const response = await fetch(`${config.API_URL}/berita/${slug}`);
-        const jsonData = await response.json();
+      const response = await fetch(`${config.API_URL}/berita/${slug}`);
+      const jsonData = await response.json();
 
-        setBerita(jsonData);
-        setLoading(false);
+      setBerita(jsonData);
+      setLoading(false);
 
-        if (jsonData.length == 0) {
-          navigate("*");
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
+      if (jsonData.length == 0) {
+        navigate("*");
       }
     }
 
@@ -52,18 +53,18 @@ const DetailBerita = () => {
   const data = {
     bgHero,
     titleMenu:
-      berita.kategori == "berita"
-        ? "Detail Berita & Informasi"
-        : "Detail Informasi Serta Merta",
+      berita.kategori == "informasi serta merta"
+        ? "Detail Informasi Serta Merta"
+        : "Detail Berita & Informasi",
     title: "Detail",
   };
 
   const breadcrumb = (
     <>
-      {berita.kategori == "berita" ? (
-        <Link to="/berita">Berita & Informasi</Link>
-      ) : (
+      {berita.kategori == "informasi serta merta" ? (
         <Link to="/informasi-publik/serta-merta">Informasi Serta Merta</Link>
+      ) : (
+        <Link to="/berita">Berita & Informasi</Link>
       )}
 
       <IoChevronForwardOutline />
@@ -74,8 +75,7 @@ const DetailBerita = () => {
   );
 
   return (
-    <>
-      <Navbar />
+    <Layout>
       <Hero data={data} />
 
       <div className="container mx-auto px-3 py-10 xl:max-w-5xl 2xl:max-w-6xl">
@@ -89,12 +89,13 @@ const DetailBerita = () => {
         <div className="grid grid-cols-12 justify-end gap-0 lg:gap-8">
           <div className="order-1 col-span-12 mb-5 lg:order-2 lg:col-span-6">
             {loading ? (
-              <Skeleton className="aspect-video w-[548.01px]" />
+              <Skeleton className="aspect-video w-full lg:w-[548.01px]" />
             ) : (
               <img
+                data-fancybox
                 src={`${config.APP_URL}/${berita.gambar ?? "img/berita.jpg"}`}
                 alt="image"
-                className="w-full"
+                className="w-full cursor-pointer transition duration-500 hover:scale-[1.01]"
               />
             )}
 
@@ -104,11 +105,11 @@ const DetailBerita = () => {
             </div>
           </div>
 
-          <div className="order-2 col-span-12 lg:order-1 lg:col-span-6">
+          <div className="order-2 col-span-12 px-0.5 lg:order-1 lg:col-span-6 lg:px-0">
             <h5 className="text-xl font-bold leading-6">
               {loading ? <Skeleton count={2} /> : berita.judul}
             </h5>
-            <div className="mb-5 mt-2.5 flex items-center gap-5 text-xs text-[#6C757D]">
+            <div className="mt-2.5 flex items-center gap-5 text-xs text-[#6C757D]">
               {loading ? (
                 <Skeleton className="w-40" />
               ) : (
@@ -125,6 +126,8 @@ const DetailBerita = () => {
                 </>
               )}
             </div>
+
+            <hr className="my-4" />
 
             {loading ? (
               <div className="text sm">
@@ -150,9 +153,7 @@ const DetailBerita = () => {
           {data.path != "/formulir" && <CardNews />}
         </div>
       </div>
-      <Footer1 />
-      <Footer2 />
-    </>
+    </Layout>
   );
 };
 

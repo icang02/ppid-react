@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
-import logo from "../assets/img/ppid.png";
+import logo from "../../assets/img/ppid.png";
 import { IoMenuOutline } from "react-icons/io5";
 import { IoCloseOutline } from "react-icons/io5";
 import { IoChevronDown } from "react-icons/io5";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-import LoadingBar from "react-top-loading-bar";
-import InputSearch from "./search/inputSearch";
+import InputSearch from "../search/inputSearch";
+import SingleLMenu from "./SingleLMenu";
+import MultiMenu from "./MultiMenu";
 
 export const Navbar = () => {
-  const [progress, setProgress] = useState(100);
-
   const path = useLocation().pathname;
 
   const [menuClick, setMenuClick] = useState(false);
@@ -114,162 +113,50 @@ export const Navbar = () => {
   return (
     <nav
       className={`${
-        isSticky ? "fixed bg-primary" : "absolute bg-primary xl:bg-transparent"
-      } z-50 w-full `}
+        isSticky ? "fixed bg-primary" : "fixed bg-primary xl:bg-transparent"
+      } z-50 w-full transition duration-500`}
     >
       <div
         className={`${
-          isSticky ? "px-3 py-2.5 xl:px-0 xl:py-3" : "px-3 py-3 xl:px-0 xl:py-5"
-        } container mx-auto flex items-center justify-between  transition-all duration-500 xl:max-w-5xl 2xl:max-w-6xl`}
+          isSticky ? "px-3 py-1 xl:px-0 xl:py-1.5" : "px-3 py-3 xl:px-0 xl:py-5"
+        } container mx-auto flex items-center justify-between transition-all duration-500 xl:max-w-5xl 2xl:max-w-6xl`}
       >
         <Link to="/" onClick={handleScrollToTop}>
-          <img src={logo} width={isSticky ? "135" : "170"} />
+          <img
+            src={logo}
+            className={`${
+              isSticky
+                ? "-translate-x-3 scale-[.88] lg:scale-[.88]"
+                : "scale-100"
+            } w-[145px] transition duration-500 lg:w-[170px]`}
+          />
         </Link>
-        {/* LOADING PROGRESS BAR */}
-        <LoadingBar
-          color="#2998ff"
-          progress={progress}
-          onLoaderFinished={() => setProgress(0)}
-        />
 
         {/* DESKTOP NAVBAR */}
         <ul className="hidden text-sm text-white xl:block">
           <div className="flex items-center gap-8">
-            <NavLink
-              onClick={handleScrollToTop}
-              to="/"
-              className={`${
-                path == "/" && "active"
-              } inline-block py-3.5 tracking-widest transition-all duration-500 hover:text-acsent`}
-            >
-              Beranda
-            </NavLink>
-
-            <NavLink
-              to={"javascript:void(0)"}
-              className={`${
-                ["profil", "visi", "tugas", "struktur"].some((key) =>
-                  path.includes(key),
-                ) && "active"
-              } group`}
-            >
-              <div className="flex items-center gap-0.5 py-3.5 tracking-widest transition-all duration-500 group-hover:text-acsent">
-                Tentang <IoChevronDown />
-              </div>
-
-              <div className="pointer-events-none absolute translate-y-4 text-other opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                <ul className="pointer-events-auto overflow-hidden rounded-lg bg-white text-xs text-black">
-                  {tentang.map((item, i) => (
-                    <>
-                      <Link
-                        key={i}
-                        to={item.path}
-                        className="block py-3 pl-5 pr-7 tracking-wider duration-300 hover:bg-[#eeeeee] hover:text-acsent"
-                      >
-                        <span>{item.nama}</span>
-                      </Link>
-                      {i < tentang.length - 1 && <hr />}
-                    </>
-                  ))}
-                </ul>
-              </div>
-            </NavLink>
-
-            <NavLink
-              to={"javascript:void(0)"}
-              className={`${
-                ["berkala", "serta", "saat", "dikecualikan"].some((key) =>
-                  path.includes(key),
-                ) && "active"
-              } group`}
-            >
-              <div className="flex items-center gap-0.5 py-3.5 tracking-widest transition-all duration-500 group-hover:text-acsent">
-                Informasi Publik <IoChevronDown />
-              </div>
-
-              <div className="pointer-events-none absolute translate-y-4 text-other opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                <ul className="pointer-events-auto overflow-hidden rounded-lg bg-white text-xs text-black">
-                  {informasiPublik.map((item, i) => (
-                    <>
-                      <Link
-                        onClick={handleScrollToTop}
-                        key={i}
-                        to={item.path}
-                        className="block py-3 pl-5 pr-7 tracking-wider duration-300 hover:bg-[#eeeeee] hover:text-acsent"
-                      >
-                        <span>{item.nama}</span>
-                      </Link>
-                      {i < informasiPublik.length - 1 && <hr />}
-                    </>
-                  ))}
-                </ul>
-              </div>
-            </NavLink>
-
-            <NavLink
-              to={"javascript:void(0)"}
-              className={`${
-                ["laporan/"].some((key) => path.includes(key)) && "active"
-              } group`}
-            >
-              <div className="flex items-center gap-0.5 py-3.5 tracking-widest transition-all duration-500 group-hover:text-acsent">
-                Laporan <IoChevronDown />
-              </div>
-
-              <div className="pointer-events-none absolute translate-y-4 text-other opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                <ul className="pointer-events-auto overflow-hidden rounded-lg bg-white text-xs text-black">
-                  {laporan.map((item, i) => (
-                    <>
-                      <Link
-                        key={i}
-                        to={item.path}
-                        className="block py-3 pl-5 pr-7 tracking-wider duration-300 hover:bg-[#eeeeee] hover:text-acsent"
-                      >
-                        <span>{item.nama}</span>
-                      </Link>
-                      {i < laporan.length - 1 && <hr />}
-                    </>
-                  ))}
-                </ul>
-              </div>
-            </NavLink>
-
-            <NavLink
-              to={"javascript:void(0)"}
-              className={`${
-                ["formulir/"].some((key) => path.includes(key)) && "active"
-              } group`}
-            >
-              <div className="flex items-center gap-0.5 py-3.5 tracking-widest transition-all duration-500 group-hover:text-acsent">
-                Formulir <IoChevronDown />
-              </div>
-
-              <div className="pointer-events-none absolute translate-y-4 text-other opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                <ul className="pointer-events-auto overflow-hidden rounded-lg bg-white text-xs text-black">
-                  {formulir.map((item, i) => (
-                    <>
-                      <Link
-                        onClick={handleScrollToTop}
-                        key={i}
-                        to={item.path}
-                        className="block py-3 pl-5 pr-7 tracking-wider duration-300 hover:bg-[#eeeeee] hover:text-acsent"
-                      >
-                        <span>{item.nama}</span>
-                      </Link>
-                      {i < formulir.length - 1 && <hr />}
-                    </>
-                  ))}
-                </ul>
-              </div>
-            </NavLink>
-
-            <NavLink
-              onClick={handleScrollToTop}
-              to="/regulasi"
-              className="inline-block py-3.5 tracking-widest transition-all duration-500 hover:text-acsent"
-            >
-              Regulasi
-            </NavLink>
+            <SingleLMenu currentPath={path} link="/" titleLink="Beranda" />
+            <MultiMenu
+              currentPath={path}
+              titleLink="Tentang"
+              listMenu={tentang}
+            />
+            <MultiMenu
+              currentPath={path}
+              titleLink="Informasi Publik"
+              listMenu={informasiPublik}
+            />
+            <MultiMenu
+              currentPath={path}
+              titleLink="Laporan"
+              listMenu={laporan}
+            />
+            <MultiMenu
+              currentPath={path}
+              titleLink="Formulir"
+              listMenu={formulir}
+            />
+            <SingleLMenu link="/regulasi" titleLink="Regulasi" />
 
             {/* SEARCH INPUT */}
             <InputSearch />
@@ -456,7 +343,11 @@ export const Navbar = () => {
 
         {/* HAMBURGER MENU ICON */}
         {/* SEARCH INPUT */}
-        <div className="flex items-center gap-3 xl:hidden">
+        <div
+          className={`flex items-center xl:hidden ${
+            isSticky ? "gap-2.5" : "gap-3"
+          }`}
+        >
           <InputSearch />
           <div
             className={`${

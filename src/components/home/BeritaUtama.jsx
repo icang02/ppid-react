@@ -8,6 +8,7 @@ import Skeleton from "react-loading-skeleton";
 import config from "../../config";
 import { format } from "date-fns";
 import idLocale from "date-fns/locale/id";
+import Aos from "aos";
 
 const BeritaUtama = () => {
   const [data, setData] = useState([]);

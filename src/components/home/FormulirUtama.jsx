@@ -44,7 +44,7 @@ const Formulir = () => {
 
   return (
     <section>
-      <div className="container mx-auto px-3 py-32 xl:max-w-6xl 2xl:max-w-7xl">
+      <div className="container mx-auto overflow-x-hidden px-3 py-32 xl:max-w-6xl 2xl:max-w-7xl">
         <div className="flex flex-col gap-0 lg:flex-row lg:gap-8 ">
           {loading ? (
             <div className="h-full w-full self-start lg:w-1/2">

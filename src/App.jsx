@@ -15,11 +15,13 @@ import "react-loading-skeleton/dist/skeleton.css";
 import Laporan from "./pages/Laporan";
 import LaporanImg from "./pages/LaporanImg";
 
+import "aos/dist/aos.css";
+
 function App() {
   return (
     <div className="font-poppins">
       <Helmet>
-        <title>PPID UHO</title>
+        <title>PPID Universitas Halu Oleo</title>
         <link rel="icon" type="image/x-icon" href={logo} />
       </Helmet>
 

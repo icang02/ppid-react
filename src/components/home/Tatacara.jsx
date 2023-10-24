@@ -5,7 +5,14 @@ import Skeleton from "react-loading-skeleton";
 
 import config from "../../config";
 
+import { Fancybox } from "@fancyapps/ui";
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
+
 const Tatacara = () => {
+  Fancybox.bind("[data-fancybox]", {
+    // Your custom options
+  });
+
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -25,6 +32,7 @@ const Tatacara = () => {
     fetchData();
   }, []);
 
+  let j = 0;
   return (
     <section
       style={{ backgroundImage: `url(${calculatorBg})` }}
@@ -56,11 +64,13 @@ const Tatacara = () => {
                   key={i}
                 >
                   <img
-                    src={`http://127.0.0.1:8000/storage/${item.gambar}`}
+                    data-fancybox
+                    src={`${config.APP_URL}/${item.gambar}`}
                     alt="image"
                     className="w-full cursor-pointer border-[5px] border-white duration-300 hover:brightness-50"
                   />
                   <h6 className="mt-5 text-center text-sm font-bold text-white lg:text-base">
+                    {/* {j + 1} */}
                     {item.judul}
                   </h6>
                 </div>

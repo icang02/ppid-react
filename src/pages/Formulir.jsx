@@ -1,11 +1,9 @@
-import { Navbar } from "../components/Navbar";
 import Hero from "../components/formulir/Hero";
 import Content from "../components/formulir/Content";
-import Footer1 from "../components/Footer1";
-import Footer2 from "../components/Footer2";
 
 import bgHero from "../assets/img/audit.png";
 import { Link, useLocation } from "react-router-dom";
+import Layout from "../components/Layout/Layout";
 
 const Formulir = () => {
   const currentPath = useLocation().pathname;
@@ -41,13 +39,10 @@ const Formulir = () => {
   );
 
   return (
-    <>
-      <Navbar />
+    <Layout>
       <Hero data={data} />
       <Content breadcrumb={breadcrumb} />
-      <Footer1 />
-      <Footer2 />
-    </>
+    </Layout>
   );
 };
 

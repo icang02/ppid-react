@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 
 import config from "../../config";
+import Aos from "aos";
 
 const JenisInformasi = () => {
   const [data, setData] = useState([]);
@@ -15,6 +16,7 @@ const JenisInformasi = () => {
   };
 
   useEffect(() => {
+    Aos.init({ once: true });
     async function fetchData() {
       try {
         const response = await fetch(
@@ -35,10 +37,19 @@ const JenisInformasi = () => {
   return (
     <section id="jenisInformasi">
       <div className="container mx-auto px-3 py-32 pt-28 xl:max-w-7xl">
-        <h5 className="mb-2 text-center font-bold text-acsent lg:text-xl">
+        <h5
+          data-aos="zoom-in-up"
+          data-aos-duration="1000"
+          className="mb-2 text-center font-bold text-acsent lg:text-xl"
+        >
           PPID UHO
         </h5>
-        <h2 className="text-center text-2xl font-bold lg:text-3xl">
+        <h2
+          data-aos="zoom-in-up"
+          data-aos-duration="1000"
+          data-aos-delay="200"
+          className="text-center text-2xl font-bold lg:text-3xl"
+        >
           Jenis - Jenis informasi
         </h2>
 
@@ -56,6 +67,9 @@ const JenisInformasi = () => {
                 ))
             : data.map((item, i) => (
                 <div
+                  data-aos="zoom-in"
+                  data-aos-duration="1000"
+                  data-aos-delay={(i + 1) * 300}
                   key={i}
                   onClick={() => handleElementClick(item.judul)}
                   className={`${
@@ -94,10 +108,14 @@ const JenisInformasi = () => {
           data.map((item, i) => (
             <div key={i}>
               {activeElement === item.judul && (
-                <div className="mt-10 grid grid-cols-12 rounded-lg text-center shadow-lg lg:mx-auto lg:max-w-6xl xl:text-left">
+                <div
+                  data-aos="zoom-in"
+                  data-aos-duration="1000"
+                  className="mt-10 grid grid-cols-12 rounded-lg text-center shadow-lg lg:mx-auto lg:max-w-6xl xl:text-left"
+                >
                   <div className="col-span=12 hidden h-72 lg:col-span-4 xl:block">
                     <img
-                      src={`http://127.0.0.1:8000/${item.gambar}`}
+                      src={`${config.APP_URL}/${item.gambar}`}
                       alt={item.gambar}
                       className="h-full w-96 rounded-l-lg border border-r object-cover object-center"
                     />

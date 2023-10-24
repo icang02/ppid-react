@@ -24,7 +24,7 @@ const Footer1 = () => {
   }, []);
 
   return (
-    <section className="-mb-0.5 bg-primary px-5 py-10">
+    <section className="-mb-0.5 overflow-hidden bg-primary py-10">
       <div className="container mx-auto xl:max-w-5xl 2xl:max-w-6xl">
         <div className="grid grid-cols-12 gap-8 ">
           {loading
@@ -42,7 +42,10 @@ const Footer1 = () => {
                   </div>
                 ))
             : data.map((item, i) => (
-                <div className="col-span-12 lg:col-span-4" key={i}>
+                <div
+                  className="col-span-12 pl-3.5 pr-4 lg:col-span-4 lg:p-0"
+                  key={i}
+                >
                   <h6 className="mb-3 text-sm font-semibold text-white opacity-90">
                     {item.judul}
                   </h6>
