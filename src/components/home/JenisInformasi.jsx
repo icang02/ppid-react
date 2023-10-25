@@ -6,10 +6,19 @@ import Skeleton from "react-loading-skeleton";
 import config from "../../config";
 import Aos from "aos";
 
+// import gambar jenis informasi
+import imginfo1 from "../../assets/img/informasi berkala.png";
+import imginfo2 from "../../assets/img/informasi serta merta.png";
+import imginfo3 from "../../assets/img/informasi sedia tiap saat.png";
+import imginfo4 from "../../assets/img/informasi dikecualikan.png";
+
 const JenisInformasi = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeElement, setActiveElement] = useState("Informasi Berkala");
+
+  // variabel gambar
+  const imgInfo = [imginfo1, imginfo2, imginfo3, imginfo4];
 
   const handleElementClick = (elementId) => {
     setActiveElement(elementId);
@@ -17,6 +26,7 @@ const JenisInformasi = () => {
 
   useEffect(() => {
     Aos.init({ once: true });
+
     async function fetchData() {
       try {
         const response = await fetch(
@@ -53,32 +63,52 @@ const JenisInformasi = () => {
           Jenis - Jenis informasi
         </h2>
 
-        <div className="mt-5 flex flex-col items-center justify-center gap-2 lg:mt-10 lg:flex-row">
-          {loading
-            ? Array(3)
-                .fill(0)
-                .map((item, i) => (
-                  <div
-                    key={i}
-                    className={`rounded px-7 py-3 text-sm font-semibold shadow-md lg:text-base`}
-                  >
-                    <Skeleton className="w-40" />
-                  </div>
-                ))
-            : data.map((item, i) => (
+        <div className="mt-5 flex flex-col items-center justify-center gap-3 lg:mt-10 lg:gap-4">
+          {loading ? (
+            Array(3)
+              .fill(0)
+              .map((item, i) => (
                 <div
-                  data-aos="zoom-in"
-                  data-aos-duration="1000"
-                  data-aos-delay={(i + 1) * 300}
                   key={i}
-                  onClick={() => handleElementClick(item.judul)}
-                  className={`${
-                    activeElement === item.judul && "text-acsent"
-                  } cursor-pointer rounded px-7 py-3 text-center text-sm font-semibold shadow-md lg:text-base`}
+                  className={`rounded px-7 py-3 text-sm font-semibold shadow-md lg:text-base`}
                 >
-                  {item.judul}
+                  <Skeleton className="w-40" />
                 </div>
-              ))}
+              ))
+          ) : (
+            <>
+              <div
+                data-aos="zoom-in"
+                data-aos-duration="1000"
+                data-aos-delay={300}
+                onClick={() => handleElementClick(data[0].judul)}
+                className={`${
+                  activeElement === data[0].judul && "text-acsent"
+                } cursor-pointer rounded px-7 py-3 text-center text-sm
+                     font-semibold shadow-md lg:text-lg`}
+              >
+                {data[0].judul}
+              </div>
+              <div className="flex flex-col gap-3 lg:flex-row">
+                {data
+                  .filter((item) => item.id != 1)
+                  .map((item, i) => (
+                    <div
+                      data-aos="zoom-in"
+                      data-aos-duration="1000"
+                      data-aos-delay={(i + 1) * 300}
+                      key={i}
+                      onClick={() => handleElementClick(item.judul)}
+                      className={`${
+                        activeElement === item.judul && "text-acsent"
+                      } cursor-pointer rounded px-7 py-3 text-center text-sm font-semibold shadow-md lg:text-base`}
+                    >
+                      {item.judul}
+                    </div>
+                  ))}
+              </div>
+            </>
+          )}
         </div>
 
         {loading ? (
@@ -115,8 +145,8 @@ const JenisInformasi = () => {
                 >
                   <div className="col-span=12 hidden h-72 lg:col-span-4 xl:block">
                     <img
-                      src={`${config.APP_URL}/${item.gambar}`}
-                      alt={item.gambar}
+                      src={imgInfo[i]}
+                      alt={"image.png"}
                       className="h-full w-96 rounded-l-lg border border-r object-cover object-center"
                     />
                   </div>
@@ -126,9 +156,9 @@ const JenisInformasi = () => {
                       <h5 className="mb-5 text-xl font-bold lg:mb-7 lg:text-2xl">
                         {item.judul}
                       </h5>
-                      <p className="mb-5 text-sm text-other lg:mb-7 lg:text-base">
+                      <div className="mb-5 text-sm leading-6 text-other lg:mb-7 lg:text-base lg:leading-7">
                         {item.isi}
-                      </p>
+                      </div>
                       <Link
                         to={item.link}
                         className="text-sm font-medium italic text-blue-600 lg:text-base"

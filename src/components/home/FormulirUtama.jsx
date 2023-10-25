@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import formulirHome from "../../assets/img/formulir-home.jpg";
+// import formulirHome from "../../assets/img/formulir-home.jpg";
+import formulirHome from "../../assets/img/Penyelesaian Sengketa.jpg";
 import { IoArrowRedo } from "react-icons/io5";
 
 import { useEffect, useState } from "react";
@@ -62,9 +63,9 @@ const Formulir = () => {
                 {loading ? <Skeleton /> : data.judul}
               </h5>
 
-              <p className="text-sm text-other lg:text-base">
+              <div className="text-sm leading-6 text-other lg:text-base lg:leading-7">
                 {loading ? <Skeleton count={3} /> : data.isi}
-              </p>
+              </div>
 
               {loading ? (
                 <div className="mt-5 flex flex-col gap-1 lg:mt-10">

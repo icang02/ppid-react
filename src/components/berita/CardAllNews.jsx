@@ -43,10 +43,10 @@ export default function CardAllNews({ data }) {
             </div>
 
             <div className="col-span-12 border lg:col-span-8 lg:flex lg:items-center lg:rounded-tr-lg lg:px-12">
-              <div className="mt-5 px-5 pb-5 lg:m-0 lg:w-full lg:p-0">
+              <div className="mt-5 px-5 pb-5 leading-6 lg:m-0 lg:w-full lg:p-0">
                 <div
                   onClick={() => navigate(`/berita/${item.slug}`)}
-                  className="block cursor-pointer font-bold leading-5 hover:underline lg:text-xl"
+                  className="block cursor-pointer font-bold hover:underline lg:text-xl"
                 >
                   {limitText(item.judul, 100)}
                 </div>

@@ -37,7 +37,7 @@ const Hero = () => {
             data-aos="fade-right"
             data-aos-delay="250"
             data-aos-duration="1000"
-            className="max-w-xs text-2xl font-black leading-9 lg:max-w-4xl lg:text-5xl lg:font-extrabold lg:leading-tight"
+            className="w-full text-2xl font-black leading-9 lg:w-[600px] lg:max-w-4xl lg:text-5xl lg:font-extrabold lg:leading-tight"
           >
             <span className="text-acsent">Selamat</span> Datang di PPID
             Universitas <span className="text-acsent">Halu Oleo</span>
@@ -63,12 +63,12 @@ const Hero = () => {
                   .map((item, i) => (
                     <div
                       key={i}
-                      className="animate-dot-animation mx-[5px] h-[10px] w-[10px] rounded-[50%] bg-white opacity-0"
+                      className="mx-[5px] h-[10px] w-[10px] animate-dot-animation rounded-[50%] bg-white opacity-0"
                     ></div>
                   ))}
               </div>
             ) : (
-              data.isi
+              <div className="leading-7">{data.isi}</div>
             )}
           </div>
 

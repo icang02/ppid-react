@@ -12,6 +12,8 @@ import MultiMenu from "./MultiMenu";
 import SingleMenuMobile from "./SingleMenuMobile";
 import MultiMenuMobile from "./MultiMenuMobile";
 
+import { motion, AnimatePresence } from "framer-motion";
+
 export const Navbar = () => {
   const path = useLocation().pathname;
 
@@ -57,7 +59,7 @@ export const Navbar = () => {
               isSticky
                 ? "-translate-x-3 scale-[.88] lg:scale-[.88]"
                 : "scale-100"
-            } w-[145px] transition duration-500 lg:w-[170px]`}
+            } -z-50 w-[145px] transition duration-500 lg:w-[170px]`}
           />
         </Link>
 
@@ -94,33 +96,47 @@ export const Navbar = () => {
 
         {/* MOBILE NAVBAR */}
         <ul
-          className={`${menuClick ? "block" : "hidden"} ${
-            isSticky ? "top-[69px]" : "top-[84px]"
-          } absolute left-0 right-0 mx-3 bg-white text-sm font-normal shadow xl:hidden`}
+          className={` ${isSticky ? "top-[60px]" : "top-[76px]"} ${
+            menuClick
+              ? "pointer-events-auto translate-x-0"
+              : "pointer-events-none translate-x-[110%]"
+          } absolute left-0 right-0 -z-10 mx-3 bg-white text-sm font-normal shadow transition duration-500 ease-in-out xl:hidden`}
         >
           <li className="flex flex-col text-center">
-            <SingleMenuMobile link={`/`} titleLink={`Beranda`} />
+            <SingleMenuMobile
+              link={`/`}
+              titleLink={`Beranda`}
+              setMenuClick={setMenuClick}
+            />
             <MultiMenuMobile
               titleLink={`Tentang`}
               listMenu={data.tentang}
               listMenuClick={false}
+              setMenuClick={setMenuClick}
             />
             <MultiMenuMobile
               titleLink={`Informasi Publik`}
               listMenu={data.informasiPublik}
               listMenuClick={false}
+              setMenuClick={setMenuClick}
             />
             <MultiMenuMobile
               titleLink={`Formulir`}
               listMenu={data.formulir}
               listMenuClick={false}
+              setMenuClick={setMenuClick}
             />
             <MultiMenuMobile
               titleLink={`Laporan`}
               listMenu={data.laporan}
               listMenuClick={false}
+              setMenuClick={setMenuClick}
             />
-            <SingleMenuMobile link={`/regulasi`} titleLink={`Regulasi`} />
+            <SingleMenuMobile
+              link={`/regulasi`}
+              titleLink={`Regulasi`}
+              setMenuClick={setMenuClick}
+            />
           </li>
         </ul>
 

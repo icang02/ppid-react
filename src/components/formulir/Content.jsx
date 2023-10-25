@@ -1,11 +1,9 @@
-import { IoChevronForwardOutline } from "react-icons/io5";
-import { Link, json, useLocation } from "react-router-dom";
-import img from "../../assets/img/berita.jpg";
+import { useLocation } from "react-router-dom";
 import CardNews from "../CardNews";
 import CardInfoPublik from "../CardInfoPublik";
 
-import regulasi from "../../assets/img/regulasi.jpg";
-import sengketa from "../../assets/img/Penyelesaian Sengketa.jpg";
+import sengketa from "../../assets/img/regulasi.jpg";
+import regulasi from "../../assets/img/regulasi-baru.jpg";
 import permohonan from "../../assets/img/permohonan.jpg";
 import keberatan from "../../assets/img/keberatan.jpg";
 
@@ -90,20 +88,22 @@ const Content = ({ breadcrumb }) => {
             <div>
               {loading ? (
                 <>
+                  <Skeleton className="mb-4 aspect-video w-full" />
                   <Skeleton count={5} />
-                  <Skeleton className="mt-4 aspect-video w-full" />
                 </>
               ) : (
                 <>
-                  <div
-                    className="isi text-sm text-other"
-                    dangerouslySetInnerHTML={{ __html: data.isi }}
-                  ></div>
                   <img
                     data-fancybox
                     src={`${config.APP_URL}/${data.gambar ?? "img/berita.jpg"}`}
-                    className="mt-4 w-full cursor-pointer transition duration-500 hover:scale-[1.01]"
+                    className="mb-7 w-full cursor-pointer transition duration-500 hover:scale-[1.01]"
                   />
+                  <div
+                    className={`${
+                      currentPath == "/struktur-ppid" ? "isi-regulasi" : ""
+                    } isi text-sm text-other`}
+                    dangerouslySetInnerHTML={{ __html: data.isi }}
+                  ></div>
                 </>
               )}
             </div>
@@ -112,7 +112,9 @@ const Content = ({ breadcrumb }) => {
             <Skeleton count={5} />
           ) : (
             <div
-              className="isi text-sm text-other"
+              className={`${
+                currentPath == "/regulasi" ? "isi-regulasi leading-7" : ""
+              } isi text-sm leading-6 text-other `}
               dangerouslySetInnerHTML={{ __html: data.isi }}
             ></div>
           )}

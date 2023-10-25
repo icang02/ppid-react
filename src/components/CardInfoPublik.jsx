@@ -78,7 +78,7 @@ const CardInfoPublik = ({ path }) => {
               </div>
 
               <div
-                className={`transition-height duration-500 ease-in-out ${
+                className={`transition-height isi duration-500 ease-in-out ${
                   activeIndex === i ? "max-h-[1000px]" : "max-h-0"
                 } overflow-hidden`}
               >

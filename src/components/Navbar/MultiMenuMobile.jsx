@@ -7,11 +7,14 @@ export default function MultiMenuMobile({
   titleLink,
   listMenu,
   listMenuClick,
+  setMenuClick,
 }) {
   const [isClick, setIsClick] = useState(listMenuClick);
 
   function handleScrollToTop() {
     window.scrollTo(0, 0);
+    setMenuClick(false);
+    setIsClick(false);
   }
 
   return (

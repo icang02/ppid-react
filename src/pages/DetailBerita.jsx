@@ -106,7 +106,7 @@ const DetailBerita = () => {
           </div>
 
           <div className="order-2 col-span-12 px-0.5 lg:order-1 lg:col-span-6 lg:px-0">
-            <h5 className="text-xl font-bold leading-6">
+            <h5 className="text-xl font-bold leading-7">
               {loading ? <Skeleton count={2} /> : berita.judul}
             </h5>
             <div className="mt-2.5 flex items-center gap-5 text-xs text-[#6C757D]">
@@ -135,7 +135,7 @@ const DetailBerita = () => {
               </div>
             ) : (
               <div
-                className="isi text-sm text-other"
+                className="isi text-sm leading-6 text-other"
                 dangerouslySetInnerHTML={{ __html: berita.isi }}
               ></div>
             )}

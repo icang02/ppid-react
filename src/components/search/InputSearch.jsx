@@ -68,7 +68,7 @@ export default function InputSearch() {
         onClick={handleClickSearch}
         className={`${
           isSticky && "scale-90"
-        } cursor-pointer rounded bg-acsent px-3 py-2 text-base text-white transition duration-500 lg:px-4 lg:py-3 lg:text-lg`}
+        } -z-0 cursor-pointer rounded bg-acsent px-3 py-2 text-base text-white transition duration-500 lg:px-4 lg:py-3 lg:text-lg`}
       >
         <IoSearch />
       </div>

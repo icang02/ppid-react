@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function SingleMenuMobile({ link, titleLink }) {
+export default function SingleMenuMobile({ link, titleLink, setMenuClick }) {
   function handleScrollToTop() {
     window.scrollTo(0, 0);
+    setMenuClick(false);
   }
 
   return (

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,8 +10,6 @@
   }
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
-
 * {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -18,11 +18,19 @@
   color: #f4b700;
 }
 
+.isi-regulasi a {
+  color: #0e3b63 !important;
+}
+.isi-regulasi a:hover {
+  color: #e1a900 !important;
+}
+
 .isi a {
-  font-weight: 500;
+  font-weight: 700;
+  color: #e1a900;
 }
 .isi a:hover {
-  color: #e1a900;
+  text-decoration: underline;
 }
 
 .isi p:not(:first-child) {
@@ -33,6 +41,16 @@
   margin-bottom: 8px;
 }
 
+.isi ol ul,
+.isi ol ol,
+.isi ul ol,
+.isi ul ul {
+  margin-left: 22px;
+}
+.isi ol ol,
+.isi ul ol {
+  list-style: lower-alpha;
+}
 .isi ol {
   list-style: decimal;
 }

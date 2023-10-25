@@ -8,7 +8,6 @@ import Skeleton from "react-loading-skeleton";
 import config from "../../config";
 import { format } from "date-fns";
 import idLocale from "date-fns/locale/id";
-import Aos from "aos";
 
 const BeritaUtama = () => {
   const [data, setData] = useState([]);
@@ -107,10 +106,10 @@ const BeritaUtama = () => {
                           className="aspect-[16/10] object-cover object-center transition-all duration-500 hover:scale-110 hover:brightness-[.65]"
                         />
                       </div>
-                      <div className="mt-5 px-5 pb-5">
+                      <div className="mt-5 px-5 pb-6">
                         <div
                           onClick={() => navigate(`/berita/${item.slug}`)}
-                          className="block cursor-pointer font-bold leading-5 hover:underline lg:text-lg lg:leading-6"
+                          className="block cursor-pointer font-bold leading-6 hover:underline lg:text-lg lg:leading-7"
                         >
                           {limitText(item.judul, 100)}
                         </div>
@@ -120,7 +119,7 @@ const BeritaUtama = () => {
                             locale: idLocale,
                           })}
                         </div>
-                        <p className="mt-3 text-sm text-other lg:text-base lg:leading-5">
+                        <p className="mt-3 text-sm text-other lg:text-base lg:leading-6">
                           {limitText(sanitizeHtml(item.isi), 100)}
                         </p>
                       </div>
