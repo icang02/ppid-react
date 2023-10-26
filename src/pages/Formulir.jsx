@@ -1,9 +1,10 @@
-import Hero from "../components/formulir/Hero";
-import Content from "../components/formulir/Content";
-
-import bgHero from "../assets/img/audit.png";
 import { Link, useLocation } from "react-router-dom";
-import Layout from "../components/Layout/Layout";
+
+import Layout from "src/components/Layout/Layout";
+import Hero from "src/components/formulir/Hero";
+import Content from "src/components/formulir/Content";
+
+import bgHero from "src/assets/img/audit.png";
 
 const Formulir = () => {
   const currentPath = useLocation().pathname;

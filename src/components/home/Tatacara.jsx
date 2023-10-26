@@ -1,12 +1,12 @@
-import calculatorBg from "../../assets/images/calculator-bg.jpg";
-
 import { useEffect, useState } from "react";
+
+import config from "src/config";
+
 import Skeleton from "react-loading-skeleton";
-
-import config from "../../config";
-
 import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
+
+import calculatorBg from "src/assets/images/calculator-bg.jpg";
 
 const Tatacara = () => {
   Fancybox.bind("[data-fancybox]", {

@@ -1,12 +1,12 @@
 import data from "./data";
 
 import { useEffect, useState } from "react";
-import logo from "../../assets/img/ppid.png";
+import logo from "src/assets/img/ppid.png";
 import { IoMenuOutline } from "react-icons/io5";
 import { IoCloseOutline } from "react-icons/io5";
 import { Link, useLocation } from "react-router-dom";
 
-import InputSearch from "../search/inputSearch";
+import InputSearch from "src/components/search/InputSearch";
 import SingleLMenu from "./SingleLMenu";
 import MultiMenu from "./MultiMenu";
 import SingleMenuMobile from "./SingleMenuMobile";

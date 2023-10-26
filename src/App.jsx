@@ -57,8 +57,8 @@ function App() {
               element={<Formulir />}
             />
 
-            <Route path="/berita" element={<Berita />} />
-            <Route path="/berita/search/:keyword" element={<Berita />} />
+            <Route path="/berita/page/:page" element={<Berita />} />
+            <Route path="/berita/search/:page/:keyword" element={<Berita />} />
             <Route path="/berita/:slug" element={<DetailBerita />} />
 
             <Route

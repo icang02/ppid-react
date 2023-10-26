@@ -1,4 +1,3 @@
-import React from "react";
 import { IoChevronDown } from "react-icons/io5";
 import { Link, NavLink } from "react-router-dom";
 

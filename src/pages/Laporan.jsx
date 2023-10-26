@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
-import Hero from "../components/formulir/Hero";
+import config from "../config";
 
 import bgHero from "../assets/img/rektorat2.png";
-import { Link, json, useLocation } from "react-router-dom";
-import { IoChevronForwardOutline, IoSearch } from "react-icons/io5";
 import Skeleton from "react-loading-skeleton";
 import Layout from "../components/Layout/Layout";
-import config from "../config";
+
+import { IoChevronForwardOutline, IoSearch } from "react-icons/io5";
+
+import Hero from "../components/formulir/Hero";
 
 export default function Laporan() {
   const [data, setData] = useState([]);

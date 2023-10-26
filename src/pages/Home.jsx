@@ -1,10 +1,10 @@
-import Hero from "../components/home/Hero";
-import JenisInformasi from "../components/home/JenisInformasi";
-import Tatacara from "../components/home/Tatacara";
-import FormulirUtama from "../components/home/FormulirUtama";
-import Slogan from "../components/home/Slogan";
-import BeritaUtama from "../components/home/BeritaUtama";
-import Layout from "../components/Layout/Layout";
+import Hero from "src/components/home/Hero";
+import JenisInformasi from "src/components/home/JenisInformasi";
+import Tatacara from "src/components/home/Tatacara";
+import FormulirUtama from "src/components/home/FormulirUtama";
+import Slogan from "src/components/home/Slogan";
+import BeritaUtama from "src/components/home/BeritaUtama";
+import Layout from "src/components/Layout/Layout";
 
 const Home = () => {
   return (

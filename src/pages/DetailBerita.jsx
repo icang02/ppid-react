@@ -1,29 +1,29 @@
-import { format } from "date-fns";
-import idLocale from "date-fns/locale/id";
-
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-import bgHero from "../assets/img/detail-berita.jpg";
-import Hero from "../components/formulir/Hero";
+import { useEffect, useState } from "react";
 
 import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
+import { format } from "date-fns";
+import idLocale from "date-fns/locale/id";
 
-import config from "../config";
+import config from "src/config";
+import api from "src/api";
+
+import Hero from "src/components/formulir/Hero";
+import CardNews from "src/components/CardNews";
+import Skeleton from "react-loading-skeleton";
+import Layout from "src/components/Layout/Layout";
+
+import bgHero from "src/assets/img/detail-berita.jpg";
 
 import {
   IoChevronForwardOutline,
   IoPersonSharp,
   IoTodaySharp,
 } from "react-icons/io5";
-import CardNews from "../components/CardNews";
-import { useEffect, useState } from "react";
-import Skeleton from "react-loading-skeleton";
-import Layout from "../components/Layout/Layout";
 
 const DetailBerita = () => {
-  Fancybox.bind("[data-fancybox]", {
-    // Your custom options
-  });
+  Fancybox.bind("[data-fancybox]", {});
 
   const [berita, setBerita] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -36,7 +36,7 @@ const DetailBerita = () => {
     setLoading(true);
 
     async function fetchData() {
-      const response = await fetch(`${config.API_URL}/berita/${slug}`);
+      const response = await fetch(api.getDetailNews(slug));
       const jsonData = await response.json();
 
       setBerita(jsonData);

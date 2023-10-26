@@ -26,19 +26,11 @@
 }
 
 .isi a {
-  font-weight: 700;
+  font-weight: 500;
   color: #e1a900;
 }
 .isi a:hover {
   text-decoration: underline;
-}
-
-.isi p:not(:first-child) {
-  margin-top: 12px;
-  margin-bottom: 8px;
-}
-.isi p:first-child {
-  margin-bottom: 8px;
 }
 
 .isi ol ul,
@@ -61,6 +53,14 @@
 .isi ul li {
   margin-left: 22px;
   padding-left: 3px;
+}
+
+.isi p:not(:first-child) {
+  margin-top: 20px;
+  margin-bottom: 16px;
+}
+.isi p:first-child {
+  margin-bottom: 16px;
 }
 
 .isi h1,

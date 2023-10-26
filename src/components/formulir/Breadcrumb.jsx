@@ -1,6 +1,5 @@
-import React from "react";
-import { IoChevronForwardOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { IoChevronForwardOutline } from "react-icons/io5";
 
 export default function Breadcrumb({ data }) {
   return (

@@ -100,7 +100,9 @@ const Content = ({ breadcrumb }) => {
                   />
                   <div
                     className={`${
-                      currentPath == "/struktur-ppid" ? "isi-regulasi" : ""
+                      currentPath == "/struktur-ppid"
+                        ? "isi-regulasi leading-6"
+                        : ""
                     } isi text-sm text-other`}
                     dangerouslySetInnerHTML={{ __html: data.isi }}
                   ></div>
@@ -113,7 +115,7 @@ const Content = ({ breadcrumb }) => {
           ) : (
             <div
               className={`${
-                currentPath == "/regulasi" ? "isi-regulasi leading-7" : ""
+                currentPath == "/regulasi" ? "isi-regulasi leading-6" : ""
               } isi text-sm leading-6 text-other `}
               dangerouslySetInnerHTML={{ __html: data.isi }}
             ></div>

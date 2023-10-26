@@ -1,7 +1,6 @@
-import React from "react";
 import { useState } from "react";
-import { IoChevronDown } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { IoChevronDown } from "react-icons/io5";
 
 export default function MultiMenuMobile({
   titleLink,

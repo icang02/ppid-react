@@ -1,12 +1,12 @@
-import React from "react";
-import { IoTodaySharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
-import config from "../../config";
+import config from "src/config";
 import DOMPurify from "dompurify";
 
 import { format } from "date-fns";
 import idLocale from "date-fns/locale/id";
+
+import { IoTodaySharp } from "react-icons/io5";
 
 export default function CardAllNews({ data }) {
   const navigate = useNavigate();

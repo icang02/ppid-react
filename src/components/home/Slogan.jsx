@@ -1,10 +1,8 @@
-import calculatorBg from "../../assets/images/calculator-bg.jpg";
-
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 
-import config from "../../config";
-import Aos from "aos";
+import config from "src//config";
+import calculatorBg from "src//assets/images/calculator-bg.jpg";
 
 const Slogan = () => {
   const [data, setData] = useState({});

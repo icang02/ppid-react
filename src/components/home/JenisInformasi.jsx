@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import Skeleton from "react-loading-skeleton";
+import config from "src/config";
 
-import config from "../../config";
+import Skeleton from "react-loading-skeleton";
 import Aos from "aos";
 
 // import gambar jenis informasi
-import imginfo1 from "../../assets/img/informasi berkala.png";
-import imginfo2 from "../../assets/img/informasi serta merta.png";
-import imginfo3 from "../../assets/img/informasi sedia tiap saat.png";
-import imginfo4 from "../../assets/img/informasi dikecualikan.png";
+import imginfo1 from "src/assets/img/informasi berkala.png";
+import imginfo2 from "src/assets/img/informasi serta merta.png";
+import imginfo3 from "src/assets/img/informasi sedia tiap saat.png";
+import imginfo4 from "src/assets/img/informasi dikecualikan.png";
 
 const JenisInformasi = () => {
   const [data, setData] = useState([]);

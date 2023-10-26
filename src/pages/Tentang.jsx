@@ -1,11 +1,12 @@
-import Hero from "../components/formulir/Hero";
-
-import bgHero from "../assets/img/rektorat2.png";
-import tuguImg from "../assets/img/tugu.png";
-import regulasiBg from "../assets/img/bg-regulasi.png";
 import { Link, useLocation } from "react-router-dom";
-import Layout from "../components/Layout/Layout";
-import Content from "../components/formulir/Content";
+
+import Hero from "src/components/formulir/Hero";
+import Layout from "src/components/Layout/Layout";
+import Content from "src/components/formulir/Content";
+
+import bgHero from "src/assets/img/rektorat2.png";
+import tuguImg from "src/assets/img/tugu.png";
+import regulasiBg from "src/assets/img/bg-regulasi.png";
 
 const Formulir = () => {
   const currentPath = useLocation().pathname;

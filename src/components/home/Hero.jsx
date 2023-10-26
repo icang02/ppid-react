@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import heroImg from "../../assets/img/home-img.png";
-import config from "../../config";
 import Aos from "aos";
+
+import heroImg from "src/assets/img/home-img.png";
+import config from "src/config";
 
 const Hero = () => {
   const [data, setData] = useState(null);
@@ -31,7 +32,7 @@ const Hero = () => {
       style={{ backgroundImage: `url(${heroImg})` }}
       className="h-[100vh] bg-cover bg-center"
     >
-      <div className="container mx-auto flex h-full items-center justify-center pt-8 text-center xl:max-w-5xl xl:justify-start 2xl:max-w-6xl">
+      <div className="container mx-auto flex h-full items-center justify-center pt-8 text-center lg:pt-20 xl:max-w-5xl xl:justify-start 2xl:max-w-6xl 2xl:pt-8">
         <div className="text-white lg:text-left">
           <h1
             data-aos="fade-right"

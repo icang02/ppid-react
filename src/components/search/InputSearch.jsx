@@ -56,10 +56,10 @@ export default function InputSearch() {
 
     handleXClick();
     inputRef.current.blur();
-    if (!keyword) return navigate(`/berita`);
+    if (!keyword) return navigate(`/berita/page/1`);
 
     setIsClick(!isClick);
-    navigate(`/berita/search/${keyword}`);
+    navigate(`/berita/search/1/${keyword}`);
   };
 
   return (

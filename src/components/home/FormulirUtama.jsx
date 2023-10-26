@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
-// import formulirHome from "../../assets/img/formulir-home.jpg";
-import formulirHome from "../../assets/img/Penyelesaian Sengketa.jpg";
-import { IoArrowRedo } from "react-icons/io5";
-
 import { useEffect, useState } from "react";
+
+import config from "src/config";
+
+import formulirHome from "src/assets/img/Penyelesaian Sengketa.jpg";
 import Skeleton from "react-loading-skeleton";
 
-import config from "../../config";
+import { IoArrowRedo } from "react-icons/io5";
 
 const Formulir = () => {
   const [data, setData] = useState({});

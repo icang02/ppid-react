@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import Skeleton from "react-loading-skeleton";
+import config from "src/config";
 
-import config from "../config";
+import Skeleton from "react-loading-skeleton";
 
 const Footer1 = () => {
   const [data, setData] = useState([]);

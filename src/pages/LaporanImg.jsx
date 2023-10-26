@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
-
-import Hero from "../components/formulir/Hero";
-
-import bgHero from "../assets/img/rektorat2.png";
 import { Link, useLocation } from "react-router-dom";
-import { IoChevronForwardOutline } from "react-icons/io5";
-import Layout from "../components/Layout/Layout";
 
 import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
-import config from "../config";
+
+import config from "src/config";
+
+import Layout from "src/components/Layout/Layout";
+import bgHero from "src/assets/img/rektorat2.png";
+import Hero from "src/components/formulir/Hero";
+
+import { IoChevronForwardOutline } from "react-icons/io5";
 
 export default function LaporanImg() {
   Fancybox.bind("[data-fancybox]", {
@@ -82,7 +83,7 @@ export default function LaporanImg() {
             <div className="mx-auto flex max-w-3xl flex-wrap justify-center gap-8 lg:gap-12">
               {loading ? (
                 <div className="text-center text-sm text-gray-500 lg:text-base">
-                  Belum ada data gambar.
+                  Belum ada data.
                 </div>
               ) : data.laporan.data_gambar != 0 ? (
                 data.laporan.data_gambar.map((item, i) => (

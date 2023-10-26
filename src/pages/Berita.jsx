@@ -1,25 +1,25 @@
 import { Link, useLocation, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import config from "../config";
+import config from "src/config";
+import api from "src/api";
 
-import bgHero from "../assets/img/detail-berita.jpg";
+import Layout from "src/components/Layout/Layout";
+import Hero from "src/components/formulir/Hero";
+import LoadCardAllNews from "src/components/skeleton/LoadCardAllNews";
+import CardAllNews from "src/components/berita/CardAllNews";
+import Breadcrumb from "src/components/formulir/Breadcrumb";
+import Paginate from "src/components/utilities/Paginate";
 
-import Layout from "../components/Layout/Layout";
-import Hero from "../components/formulir/Hero";
-import LoadCardAllNews from "../components/skeleton/LoadCardAllNews";
-import CardAllNews from "../components/berita/CardAllNews";
-import Breadcrumb from "../components/formulir/Breadcrumb";
-import Paginate from "../components/utilities/Paginate";
+import bgHero from "src/assets/img/detail-berita.jpg";
 
 const Berita = () => {
   const [berita, setBerita] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const { keyword } = useParams();
+  const { keyword, page } = useParams();
+
   // VARIABLE PAGINATE
-  const [currentPage, setCurrentPage] = useState(1);
-  const [perPage, setPerPage] = useState(null);
   const [lastPage, setLastPage] = useState(null);
   const [from, setFrom] = useState(null);
   const [to, setTo] = useState(null);
@@ -40,13 +40,11 @@ const Berita = () => {
         let jsonData = [];
 
         if (currentPath.includes("/informasi-publik/serta-merta")) {
-          response = await fetch(`${config.API_URL + currentPath}`);
+          response = await fetch(api.getInfoSertaMerta());
         } else if (keyword) {
-          response = await fetch(`${config.API_URL}/berita/search/${keyword}`);
+          response = await fetch(api.getSearchNews(page, keyword));
         } else {
-          response = await fetch(
-            `${config.API_URL}/berita?page=${currentPage}`,
-          );
+          response = await fetch(api.getAllNews(page));
         }
 
         jsonData = await response.json();
@@ -55,7 +53,6 @@ const Berita = () => {
         setFrom(jsonData.from);
         setTo(jsonData.to);
         setTotal(jsonData.total);
-        setPerPage(jsonData.per_page);
         setNextPageUrl(jsonData.next_page_url);
         setPrevPageUrl(jsonData.prev_page_url);
 
@@ -69,7 +66,7 @@ const Berita = () => {
     }
 
     fetchData();
-  }, [currentPage, currentPath]);
+  }, [currentPath]);
 
   const data = {
     bgHero,
@@ -115,8 +112,6 @@ const Berita = () => {
                 "Memuat..."
               ) : nextPageUrl ? (
                 <Paginate
-                  setCurrentPage={setCurrentPage}
-                  currentPage={currentPage}
                   lastPage={lastPage}
                   from={from}
                   to={to}
@@ -124,8 +119,6 @@ const Berita = () => {
                 />
               ) : prevPageUrl ? (
                 <Paginate
-                  setCurrentPage={setCurrentPage}
-                  currentPage={currentPage}
                   lastPage={lastPage}
                   from={from}
                   to={to}

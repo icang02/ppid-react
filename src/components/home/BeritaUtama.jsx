@@ -1,13 +1,16 @@
-import { IoArrowForward, IoTodaySharp } from "react-icons/io5";
-
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import DOMPurify from "dompurify";
-import Skeleton from "react-loading-skeleton";
 
-import config from "../../config";
+import config from "src/config";
+import api from "src/api";
+
 import { format } from "date-fns";
 import idLocale from "date-fns/locale/id";
+import DOMPurify from "dompurify";
+
+import Skeleton from "react-loading-skeleton";
+
+import { IoArrowForward, IoTodaySharp } from "react-icons/io5";
 
 const BeritaUtama = () => {
   const [data, setData] = useState([]);
@@ -24,15 +27,11 @@ const BeritaUtama = () => {
 
   useEffect(() => {
     async function fetchData() {
-      try {
-        const response = await fetch(`${config.API_URL}/landing/berita`);
-        const jsonData = await response.json();
+      const response = await fetch(api.getNewsHome());
+      const jsonData = await response.json();
 
-        setData(jsonData);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
+      setData(jsonData);
+      setLoading(false);
     }
 
     fetchData();
@@ -57,7 +56,7 @@ const BeritaUtama = () => {
 
         <div className="mt-12">
           <Link
-            to="/berita"
+            to="/berita/page/1"
             className="mb-3 mr-2 flex items-center justify-end text-xs opacity-90 transition-all duration-500 hover:opacity-100 lg:text-sm"
           >
             Lihat Semua

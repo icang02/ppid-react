@@ -1,12 +1,14 @@
+import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+
 import { format } from "date-fns";
 import idLocale from "date-fns/locale/id";
 
-import { IoTodaySharp } from "react-icons/io5";
+import config from "src/config";
 
-import { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
-import config from "../config";
+
+import { IoTodaySharp } from "react-icons/io5";
 
 const CardNews = () => {
   const navigate = useNavigate();

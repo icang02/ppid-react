@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { IoChevronForwardOutline } from "react-icons/io5";
-
 import config from "../config";
 import Skeleton from "react-loading-skeleton";
+
+import { useEffect, useState } from "react";
+import { IoChevronForwardOutline } from "react-icons/io5";
 
 const CardInfoPublik = ({ path }) => {
   const [activeIndex, setActiveIndex] = useState(-1);
