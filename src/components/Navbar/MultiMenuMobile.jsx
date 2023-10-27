@@ -1,25 +1,28 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { IoChevronDown } from "react-icons/io5";
+import { motion } from "framer-motion";
 
 export default function MultiMenuMobile({
   titleLink,
   listMenu,
-  listMenuClick,
-  setMenuClick,
+  setMenuStates,
+  index,
 }) {
-  const [isClick, setIsClick] = useState(listMenuClick);
+  const [isClick, setIsClick] = useState(setMenuStates[index]);
+
+  function handleActiveListMenu() {
+    setIsClick(!isClick);
+  }
 
   function handleScrollToTop() {
     window.scrollTo(0, 0);
-    setMenuClick(false);
-    setIsClick(false);
   }
 
   return (
     <>
       <button
-        onClick={() => setIsClick(!isClick)}
+        onClick={handleActiveListMenu}
         className="relative border py-3.5 tracking-widest hover:bg-[#eeeeee] hover:text-acsent"
       >
         {titleLink}
@@ -28,10 +31,10 @@ export default function MultiMenuMobile({
         </span>
       </button>
 
-      <div
-        className={`${
-          isClick ? "flex" : "hidden"
-        } flex-col text-center transition-all duration-500`}
+      {/* 99, 149, 199 */}
+      <motion.div
+        animate={{ height: isClick ? listMenu.nama : 0 }}
+        className={`flex flex-col overflow-hidden text-center`}
       >
         {listMenu.map((item, i) => {
           return (
@@ -45,7 +48,7 @@ export default function MultiMenuMobile({
             </Link>
           );
         })}
-      </div>
+      </motion.div>
     </>
   );
 }

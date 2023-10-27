@@ -12,13 +12,14 @@ import MultiMenu from "./MultiMenu";
 import SingleMenuMobile from "./SingleMenuMobile";
 import MultiMenuMobile from "./MultiMenuMobile";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 export const Navbar = () => {
   const path = useLocation().pathname;
 
   const [menuClick, setMenuClick] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
+  const [menuStates, setMenuStates] = useState(data.map(() => false));
 
   const handleScrollToTop = () => {
     window.scrollTo(0, 0);
@@ -67,26 +68,14 @@ export const Navbar = () => {
         <ul className="hidden text-sm text-white xl:block">
           <div className="flex items-center gap-8">
             <SingleLMenu currentPath={path} link="/" titleLink="Beranda" />
-            <MultiMenu
-              currentPath={path}
-              titleLink="Tentang"
-              listMenu={data.tentang}
-            />
-            <MultiMenu
-              currentPath={path}
-              titleLink="Informasi Publik"
-              listMenu={data.informasiPublik}
-            />
-            <MultiMenu
-              currentPath={path}
-              titleLink="Laporan"
-              listMenu={data.laporan}
-            />
-            <MultiMenu
-              currentPath={path}
-              titleLink="Formulir"
-              listMenu={data.formulir}
-            />
+            {data.map((item, i) => (
+              <MultiMenu
+                key={i}
+                currentPath={path}
+                titleLink={item.nama}
+                listMenu={item.listMenu}
+              />
+            ))}
             <SingleLMenu link="/regulasi" titleLink="Regulasi" />
 
             {/* SEARCH INPUT */}
@@ -95,50 +84,36 @@ export const Navbar = () => {
         </ul>
 
         {/* MOBILE NAVBAR */}
-        <ul
-          className={` ${isSticky ? "top-[60px]" : "top-[76px]"} ${
-            menuClick
-              ? "pointer-events-auto translate-x-0"
-              : "pointer-events-none translate-x-[110%]"
-          } absolute left-0 right-0 -z-10 mx-3 bg-white text-sm font-normal shadow transition duration-500 ease-in-out xl:hidden`}
+        <motion.div
+          initial={{ x: "110%" }}
+          animate={{ x: menuClick ? "0" : "110%" }}
+          className={` ${
+            isSticky ? "top-[60px]" : "top-[76px]"
+          } absolute left-0 right-0 -z-10 mx-3 translate-x-[110%] bg-white text-sm font-normal shadow transition-all duration-500 ease-in-out xl:hidden`}
         >
-          <li className="flex flex-col text-center">
+          <div className="flex flex-col text-center">
             <SingleMenuMobile
               link={`/`}
               titleLink={`Beranda`}
               setMenuClick={setMenuClick}
             />
-            <MultiMenuMobile
-              titleLink={`Tentang`}
-              listMenu={data.tentang}
-              listMenuClick={false}
-              setMenuClick={setMenuClick}
-            />
-            <MultiMenuMobile
-              titleLink={`Informasi Publik`}
-              listMenu={data.informasiPublik}
-              listMenuClick={false}
-              setMenuClick={setMenuClick}
-            />
-            <MultiMenuMobile
-              titleLink={`Formulir`}
-              listMenu={data.formulir}
-              listMenuClick={false}
-              setMenuClick={setMenuClick}
-            />
-            <MultiMenuMobile
-              titleLink={`Laporan`}
-              listMenu={data.laporan}
-              listMenuClick={false}
-              setMenuClick={setMenuClick}
-            />
+            {data.map((item, i) => (
+              <MultiMenuMobile
+                key={i}
+                titleLink={item.nama}
+                listMenu={item.listMenu}
+                menuStates={menuStates}
+                setMenuStates={setMenuStates}
+                index={i}
+              />
+            ))}
             <SingleMenuMobile
               link={`/regulasi`}
               titleLink={`Regulasi`}
               setMenuClick={setMenuClick}
             />
-          </li>
-        </ul>
+          </div>
+        </motion.div>
 
         {/* HAMBURGER MENU ICON */}
         {/* SEARCH INPUT */}
@@ -152,7 +127,9 @@ export const Navbar = () => {
             className={`${
               isSticky ? "text-3xl" : "text-4xl"
             } cursor-pointer pr-2 text-white transition-all duration-300`}
-            onClick={() => setMenuClick(!menuClick)}
+            onClick={() => {
+              setMenuClick(!menuClick);
+            }}
           >
             {menuClick ? <IoCloseOutline /> : <IoMenuOutline />}
           </div>

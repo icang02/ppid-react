@@ -64,7 +64,7 @@ const DetailBerita = () => {
       {berita.kategori == "informasi serta merta" ? (
         <Link to="/informasi-publik/serta-merta">Informasi Serta Merta</Link>
       ) : (
-        <Link to="/berita">Berita & Informasi</Link>
+        <Link to="/berita/page/1">Berita & Informasi</Link>
       )}
 
       <IoChevronForwardOutline />
